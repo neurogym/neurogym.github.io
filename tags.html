@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tags &mdash; neurogym  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        <script src="_static/katex_autorenderer.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Wrappers" href="wrappers.html" />
+    <link rel="prev" title="psychopy.VisualSearch-v0" href="envs/psychopy.VisualSearch-v0.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> neurogym
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Exploring NeuroGym tasks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example_neurogym_rl.html">Reinforcement learning example with stable-baselines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_neurogym_keras.html">Keras example of supervised learning a NeuroGym task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_neurogym_pytorch.html">Pytorch supervised learning of perceptual decision making task</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Environments</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="envs/index.html">Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tags</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#confidence">confidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#context-dependent">context dependent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-action-space">continuous action space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delayed-response">delayed response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#go-no-go">go-no-go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#motor">motor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multidimensional-action-space">multidimensional action space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#n-alternative">n-alternative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#perceptual">perceptual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reaction-time">reaction time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#steps-action-space">steps action space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supervised">supervised</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timing">timing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#two-alternative">two-alternative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#value-based">value-based</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-memory">working memory</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wrappers.html">Wrappers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">neurogym</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Tags</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tags.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="tags">
+<h1>Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="confidence">
+<span id="tag-confidence"></span><h2>confidence<a class="headerlink" href="#confidence" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/PostDecisionWager-v0.html#neurogym.envs.postdecisionwager.PostDecisionWager" title="neurogym.envs.postdecisionwager.PostDecisionWager"><code class="xref py py-class docutils literal notranslate"><span class="pre">PostDecisionWager-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="context-dependent">
+<span id="tag-context-dependent"></span><h2>context dependent<a class="headerlink" href="#context-dependent" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/ChangingEnvironment-v0.html#neurogym.envs.changingenvironment.ChangingEnvironment" title="neurogym.envs.changingenvironment.ChangingEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChangingEnvironment-v0</span></code></a>
+<a class="reference internal" href="envs/ContextDecisionMaking-v0.html#neurogym.envs.contextdecisionmaking.ContextDecisionMaking" title="neurogym.envs.contextdecisionmaking.ContextDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContextDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/SingleContextDecisionMaking-v0.html#neurogym.envs.contextdecisionmaking.SingleContextDecisionMaking" title="neurogym.envs.contextdecisionmaking.SingleContextDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">SingleContextDecisionMaking-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="continuous-action-space">
+<span id="tag-continuous-action-space"></span><h2>continuous action space<a class="headerlink" href="#continuous-action-space" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/ReachingDelayResponse-v0.html#neurogym.envs.reachingdelayresponse.ReachingDelayResponse" title="neurogym.envs.reachingdelayresponse.ReachingDelayResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReachingDelayResponse-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="delayed-response">
+<span id="tag-delayed-response"></span><h2>delayed response<a class="headerlink" href="#delayed-response" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/AngleReproduction-v0.html#neurogym.envs.anglereproduction.AngleReproduction" title="neurogym.envs.anglereproduction.AngleReproduction"><code class="xref py py-class docutils literal notranslate"><span class="pre">AngleReproduction-v0</span></code></a>
+<a class="reference internal" href="envs/CVLearning-v0.html#neurogym.envs.cv_learning.CVLearning" title="neurogym.envs.cv_learning.CVLearning"><code class="xref py py-class docutils literal notranslate"><span class="pre">CVLearning-v0</span></code></a>
+<a class="reference internal" href="envs/GoNogo-v0.html#neurogym.envs.gonogo.GoNogo" title="neurogym.envs.gonogo.GoNogo"><code class="xref py py-class docutils literal notranslate"><span class="pre">GoNogo-v0</span></code></a>
+<a class="reference internal" href="envs/IntervalDiscrimination-v0.html#neurogym.envs.intervaldiscrimination.IntervalDiscrimination" title="neurogym.envs.intervaldiscrimination.IntervalDiscrimination"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalDiscrimination-v0</span></code></a>
+<a class="reference internal" href="envs/PerceptualDecisionMakingDelayResponse-v0.html#neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMakingDelayResponse" title="neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMakingDelayResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerceptualDecisionMakingDelayResponse-v0</span></code></a>
+<a class="reference internal" href="envs/PostDecisionWager-v0.html#neurogym.envs.postdecisionwager.PostDecisionWager" title="neurogym.envs.postdecisionwager.PostDecisionWager"><code class="xref py py-class docutils literal notranslate"><span class="pre">PostDecisionWager-v0</span></code></a>
+<a class="reference internal" href="envs/ReachingDelayResponse-v0.html#neurogym.envs.reachingdelayresponse.ReachingDelayResponse" title="neurogym.envs.reachingdelayresponse.ReachingDelayResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReachingDelayResponse-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="go-no-go">
+<span id="tag-go-no-go"></span><h2>go-no-go<a class="headerlink" href="#go-no-go" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/DelayPairedAssociation-v0.html#neurogym.envs.delaypairedassociation.DelayPairedAssociation" title="neurogym.envs.delaypairedassociation.DelayPairedAssociation"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayPairedAssociation-v0</span></code></a>
+<a class="reference internal" href="envs/Detection-v0.html#neurogym.envs.detection.Detection" title="neurogym.envs.detection.Detection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Detection-v0</span></code></a>
+<a class="reference internal" href="envs/GoNogo-v0.html#neurogym.envs.gonogo.GoNogo" title="neurogym.envs.gonogo.GoNogo"><code class="xref py py-class docutils literal notranslate"><span class="pre">GoNogo-v0</span></code></a>
+<a class="reference internal" href="envs/MotorTiming-v0.html#neurogym.envs.readysetgo.MotorTiming" title="neurogym.envs.readysetgo.MotorTiming"><code class="xref py py-class docutils literal notranslate"><span class="pre">MotorTiming-v0</span></code></a>
+<a class="reference internal" href="envs/OneTwoThreeGo-v0.html#neurogym.envs.readysetgo.OneTwoThreeGo" title="neurogym.envs.readysetgo.OneTwoThreeGo"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneTwoThreeGo-v0</span></code></a>
+<a class="reference internal" href="envs/ReadySetGo-v0.html#neurogym.envs.readysetgo.ReadySetGo" title="neurogym.envs.readysetgo.ReadySetGo"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReadySetGo-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="motor">
+<span id="tag-motor"></span><h2>motor<a class="headerlink" href="#motor" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/Reaching1D-v0.html#neurogym.envs.reaching.Reaching1D" title="neurogym.envs.reaching.Reaching1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaching1D-v0</span></code></a>
+<a class="reference internal" href="envs/Reaching1DWithSelfDistraction-v0.html#neurogym.envs.reaching.Reaching1DWithSelfDistraction" title="neurogym.envs.reaching.Reaching1DWithSelfDistraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaching1DWithSelfDistraction-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="multidimensional-action-space">
+<span id="tag-multidimensional-action-space"></span><h2>multidimensional action space<a class="headerlink" href="#multidimensional-action-space" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/ReachingDelayResponse-v0.html#neurogym.envs.reachingdelayresponse.ReachingDelayResponse" title="neurogym.envs.reachingdelayresponse.ReachingDelayResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReachingDelayResponse-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="n-alternative">
+<span id="tag-n-alternative"></span><h2>n-alternative<a class="headerlink" href="#n-alternative" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/Bandit-v0.html#neurogym.envs.bandit.Bandit" title="neurogym.envs.bandit.Bandit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bandit-v0</span></code></a>
+<a class="reference internal" href="envs/NAltPerceptualDecisionMaking-v0.html#neurogym.envs.nalt_perceptualdecisionmaking.nalt_PerceptualDecisionMaking" title="neurogym.envs.nalt_perceptualdecisionmaking.nalt_PerceptualDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">NAltPerceptualDecisionMaking-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="perceptual">
+<span id="tag-perceptual"></span><h2>perceptual<a class="headerlink" href="#perceptual" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/AngleReproduction-v0.html#neurogym.envs.anglereproduction.AngleReproduction" title="neurogym.envs.anglereproduction.AngleReproduction"><code class="xref py py-class docutils literal notranslate"><span class="pre">AngleReproduction-v0</span></code></a>
+<a class="reference internal" href="envs/AntiReach-v0.html#neurogym.envs.antireach.AntiReach" title="neurogym.envs.antireach.AntiReach"><code class="xref py py-class docutils literal notranslate"><span class="pre">AntiReach-v0</span></code></a>
+<a class="reference internal" href="envs/CVLearning-v0.html#neurogym.envs.cv_learning.CVLearning" title="neurogym.envs.cv_learning.CVLearning"><code class="xref py py-class docutils literal notranslate"><span class="pre">CVLearning-v0</span></code></a>
+<a class="reference internal" href="envs/ChangingEnvironment-v0.html#neurogym.envs.changingenvironment.ChangingEnvironment" title="neurogym.envs.changingenvironment.ChangingEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChangingEnvironment-v0</span></code></a>
+<a class="reference internal" href="envs/ContextDecisionMaking-v0.html#neurogym.envs.contextdecisionmaking.ContextDecisionMaking" title="neurogym.envs.contextdecisionmaking.ContextDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContextDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/DelayComparison-v0.html#neurogym.envs.delaycomparison.DelayComparison" title="neurogym.envs.delaycomparison.DelayComparison"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayComparison-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchCategory-v0.html#neurogym.envs.delaymatchcategory.DelayMatchCategory" title="neurogym.envs.delaymatchcategory.DelayMatchCategory"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchCategory-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchSample-v0.html#neurogym.envs.delaymatchsample.DelayMatchSample" title="neurogym.envs.delaymatchsample.DelayMatchSample"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchSample-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchSampleDistractor1D-v0.html#neurogym.envs.delaymatchsample.DelayMatchSampleDistractor1D" title="neurogym.envs.delaymatchsample.DelayMatchSampleDistractor1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchSampleDistractor1D-v0</span></code></a>
+<a class="reference internal" href="envs/DelayPairedAssociation-v0.html#neurogym.envs.delaypairedassociation.DelayPairedAssociation" title="neurogym.envs.delaypairedassociation.DelayPairedAssociation"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayPairedAssociation-v0</span></code></a>
+<a class="reference internal" href="envs/Detection-v0.html#neurogym.envs.detection.Detection" title="neurogym.envs.detection.Detection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Detection-v0</span></code></a>
+<a class="reference internal" href="envs/DualDelayMatchSample-v0.html#neurogym.envs.dualdelaymatchsample.DualDelayMatchSample" title="neurogym.envs.dualdelaymatchsample.DualDelayMatchSample"><code class="xref py py-class docutils literal notranslate"><span class="pre">DualDelayMatchSample-v0</span></code></a>
+<a class="reference internal" href="envs/EconomicDecisionMaking-v0.html#neurogym.envs.economicdecisionmaking.EconomicDecisionMaking" title="neurogym.envs.economicdecisionmaking.EconomicDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">EconomicDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/HierarchicalReasoning-v0.html#neurogym.envs.hierarchicalreasoning.HierarchicalReasoning" title="neurogym.envs.hierarchicalreasoning.HierarchicalReasoning"><code class="xref py py-class docutils literal notranslate"><span class="pre">HierarchicalReasoning-v0</span></code></a>
+<a class="reference internal" href="envs/MultiSensoryIntegration-v0.html#neurogym.envs.multisensory.MultiSensoryIntegration" title="neurogym.envs.multisensory.MultiSensoryIntegration"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiSensoryIntegration-v0</span></code></a>
+<a class="reference internal" href="envs/NAltPerceptualDecisionMaking-v0.html#neurogym.envs.nalt_perceptualdecisionmaking.nalt_PerceptualDecisionMaking" title="neurogym.envs.nalt_perceptualdecisionmaking.nalt_PerceptualDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">NAltPerceptualDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/PerceptualDecisionMaking-v0.html#neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMaking" title="neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerceptualDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/PerceptualDecisionMakingDelayResponse-v0.html#neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMakingDelayResponse" title="neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMakingDelayResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerceptualDecisionMakingDelayResponse-v0</span></code></a>
+<a class="reference internal" href="envs/PostDecisionWager-v0.html#neurogym.envs.postdecisionwager.PostDecisionWager" title="neurogym.envs.postdecisionwager.PostDecisionWager"><code class="xref py py-class docutils literal notranslate"><span class="pre">PostDecisionWager-v0</span></code></a>
+<a class="reference internal" href="envs/ProbabilisticReasoning-v0.html#neurogym.envs.weatherprediction.ProbabilisticReasoning" title="neurogym.envs.weatherprediction.ProbabilisticReasoning"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProbabilisticReasoning-v0</span></code></a>
+<a class="reference internal" href="envs/PulseDecisionMaking-v0.html#neurogym.envs.perceptualdecisionmaking.PulseDecisionMaking" title="neurogym.envs.perceptualdecisionmaking.PulseDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">PulseDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/ReachingDelayResponse-v0.html#neurogym.envs.reachingdelayresponse.ReachingDelayResponse" title="neurogym.envs.reachingdelayresponse.ReachingDelayResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReachingDelayResponse-v0</span></code></a>
+<a class="reference internal" href="envs/SingleContextDecisionMaking-v0.html#neurogym.envs.contextdecisionmaking.SingleContextDecisionMaking" title="neurogym.envs.contextdecisionmaking.SingleContextDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">SingleContextDecisionMaking-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="reaction-time">
+<span id="tag-reaction-time"></span><h2>reaction time<a class="headerlink" href="#reaction-time" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/Detection-v0.html#neurogym.envs.detection.Detection" title="neurogym.envs.detection.Detection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Detection-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="steps-action-space">
+<span id="tag-steps-action-space"></span><h2>steps action space<a class="headerlink" href="#steps-action-space" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/AngleReproduction-v0.html#neurogym.envs.anglereproduction.AngleReproduction" title="neurogym.envs.anglereproduction.AngleReproduction"><code class="xref py py-class docutils literal notranslate"><span class="pre">AngleReproduction-v0</span></code></a>
+<a class="reference internal" href="envs/AntiReach-v0.html#neurogym.envs.antireach.AntiReach" title="neurogym.envs.antireach.AntiReach"><code class="xref py py-class docutils literal notranslate"><span class="pre">AntiReach-v0</span></code></a>
+<a class="reference internal" href="envs/Reaching1D-v0.html#neurogym.envs.reaching.Reaching1D" title="neurogym.envs.reaching.Reaching1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaching1D-v0</span></code></a>
+<a class="reference internal" href="envs/Reaching1DWithSelfDistraction-v0.html#neurogym.envs.reaching.Reaching1DWithSelfDistraction" title="neurogym.envs.reaching.Reaching1DWithSelfDistraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaching1DWithSelfDistraction-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="supervised">
+<span id="tag-supervised"></span><h2>supervised<a class="headerlink" href="#supervised" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/Bandit-v0.html#neurogym.envs.bandit.Bandit" title="neurogym.envs.bandit.Bandit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bandit-v0</span></code></a>
+<a class="reference internal" href="envs/CVLearning-v0.html#neurogym.envs.cv_learning.CVLearning" title="neurogym.envs.cv_learning.CVLearning"><code class="xref py py-class docutils literal notranslate"><span class="pre">CVLearning-v0</span></code></a>
+<a class="reference internal" href="envs/ChangingEnvironment-v0.html#neurogym.envs.changingenvironment.ChangingEnvironment" title="neurogym.envs.changingenvironment.ChangingEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChangingEnvironment-v0</span></code></a>
+<a class="reference internal" href="envs/ContextDecisionMaking-v0.html#neurogym.envs.contextdecisionmaking.ContextDecisionMaking" title="neurogym.envs.contextdecisionmaking.ContextDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContextDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/DelayComparison-v0.html#neurogym.envs.delaycomparison.DelayComparison" title="neurogym.envs.delaycomparison.DelayComparison"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayComparison-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchCategory-v0.html#neurogym.envs.delaymatchcategory.DelayMatchCategory" title="neurogym.envs.delaymatchcategory.DelayMatchCategory"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchCategory-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchSample-v0.html#neurogym.envs.delaymatchsample.DelayMatchSample" title="neurogym.envs.delaymatchsample.DelayMatchSample"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchSample-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchSampleDistractor1D-v0.html#neurogym.envs.delaymatchsample.DelayMatchSampleDistractor1D" title="neurogym.envs.delaymatchsample.DelayMatchSampleDistractor1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchSampleDistractor1D-v0</span></code></a>
+<a class="reference internal" href="envs/DelayPairedAssociation-v0.html#neurogym.envs.delaypairedassociation.DelayPairedAssociation" title="neurogym.envs.delaypairedassociation.DelayPairedAssociation"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayPairedAssociation-v0</span></code></a>
+<a class="reference internal" href="envs/Detection-v0.html#neurogym.envs.detection.Detection" title="neurogym.envs.detection.Detection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Detection-v0</span></code></a>
+<a class="reference internal" href="envs/DualDelayMatchSample-v0.html#neurogym.envs.dualdelaymatchsample.DualDelayMatchSample" title="neurogym.envs.dualdelaymatchsample.DualDelayMatchSample"><code class="xref py py-class docutils literal notranslate"><span class="pre">DualDelayMatchSample-v0</span></code></a>
+<a class="reference internal" href="envs/GoNogo-v0.html#neurogym.envs.gonogo.GoNogo" title="neurogym.envs.gonogo.GoNogo"><code class="xref py py-class docutils literal notranslate"><span class="pre">GoNogo-v0</span></code></a>
+<a class="reference internal" href="envs/HierarchicalReasoning-v0.html#neurogym.envs.hierarchicalreasoning.HierarchicalReasoning" title="neurogym.envs.hierarchicalreasoning.HierarchicalReasoning"><code class="xref py py-class docutils literal notranslate"><span class="pre">HierarchicalReasoning-v0</span></code></a>
+<a class="reference internal" href="envs/IntervalDiscrimination-v0.html#neurogym.envs.intervaldiscrimination.IntervalDiscrimination" title="neurogym.envs.intervaldiscrimination.IntervalDiscrimination"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalDiscrimination-v0</span></code></a>
+<a class="reference internal" href="envs/MotorTiming-v0.html#neurogym.envs.readysetgo.MotorTiming" title="neurogym.envs.readysetgo.MotorTiming"><code class="xref py py-class docutils literal notranslate"><span class="pre">MotorTiming-v0</span></code></a>
+<a class="reference internal" href="envs/MultiSensoryIntegration-v0.html#neurogym.envs.multisensory.MultiSensoryIntegration" title="neurogym.envs.multisensory.MultiSensoryIntegration"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiSensoryIntegration-v0</span></code></a>
+<a class="reference internal" href="envs/NAltPerceptualDecisionMaking-v0.html#neurogym.envs.nalt_perceptualdecisionmaking.nalt_PerceptualDecisionMaking" title="neurogym.envs.nalt_perceptualdecisionmaking.nalt_PerceptualDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">NAltPerceptualDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/OneTwoThreeGo-v0.html#neurogym.envs.readysetgo.OneTwoThreeGo" title="neurogym.envs.readysetgo.OneTwoThreeGo"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneTwoThreeGo-v0</span></code></a>
+<a class="reference internal" href="envs/PerceptualDecisionMaking-v0.html#neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMaking" title="neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerceptualDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/PerceptualDecisionMakingDelayResponse-v0.html#neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMakingDelayResponse" title="neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMakingDelayResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerceptualDecisionMakingDelayResponse-v0</span></code></a>
+<a class="reference internal" href="envs/ProbabilisticReasoning-v0.html#neurogym.envs.weatherprediction.ProbabilisticReasoning" title="neurogym.envs.weatherprediction.ProbabilisticReasoning"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProbabilisticReasoning-v0</span></code></a>
+<a class="reference internal" href="envs/PulseDecisionMaking-v0.html#neurogym.envs.perceptualdecisionmaking.PulseDecisionMaking" title="neurogym.envs.perceptualdecisionmaking.PulseDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">PulseDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/ReachingDelayResponse-v0.html#neurogym.envs.reachingdelayresponse.ReachingDelayResponse" title="neurogym.envs.reachingdelayresponse.ReachingDelayResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReachingDelayResponse-v0</span></code></a>
+<a class="reference internal" href="envs/ReadySetGo-v0.html#neurogym.envs.readysetgo.ReadySetGo" title="neurogym.envs.readysetgo.ReadySetGo"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReadySetGo-v0</span></code></a>
+<a class="reference internal" href="envs/SingleContextDecisionMaking-v0.html#neurogym.envs.contextdecisionmaking.SingleContextDecisionMaking" title="neurogym.envs.contextdecisionmaking.SingleContextDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">SingleContextDecisionMaking-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="timing">
+<span id="tag-timing"></span><h2>timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/IntervalDiscrimination-v0.html#neurogym.envs.intervaldiscrimination.IntervalDiscrimination" title="neurogym.envs.intervaldiscrimination.IntervalDiscrimination"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalDiscrimination-v0</span></code></a>
+<a class="reference internal" href="envs/MotorTiming-v0.html#neurogym.envs.readysetgo.MotorTiming" title="neurogym.envs.readysetgo.MotorTiming"><code class="xref py py-class docutils literal notranslate"><span class="pre">MotorTiming-v0</span></code></a>
+<a class="reference internal" href="envs/OneTwoThreeGo-v0.html#neurogym.envs.readysetgo.OneTwoThreeGo" title="neurogym.envs.readysetgo.OneTwoThreeGo"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneTwoThreeGo-v0</span></code></a>
+<a class="reference internal" href="envs/ReadySetGo-v0.html#neurogym.envs.readysetgo.ReadySetGo" title="neurogym.envs.readysetgo.ReadySetGo"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReadySetGo-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="two-alternative">
+<span id="tag-two-alternative"></span><h2>two-alternative<a class="headerlink" href="#two-alternative" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/CVLearning-v0.html#neurogym.envs.cv_learning.CVLearning" title="neurogym.envs.cv_learning.CVLearning"><code class="xref py py-class docutils literal notranslate"><span class="pre">CVLearning-v0</span></code></a>
+<a class="reference internal" href="envs/ChangingEnvironment-v0.html#neurogym.envs.changingenvironment.ChangingEnvironment" title="neurogym.envs.changingenvironment.ChangingEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChangingEnvironment-v0</span></code></a>
+<a class="reference internal" href="envs/ContextDecisionMaking-v0.html#neurogym.envs.contextdecisionmaking.ContextDecisionMaking" title="neurogym.envs.contextdecisionmaking.ContextDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContextDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/DawTwoStep-v0.html#neurogym.envs.dawtwostep.DawTwoStep" title="neurogym.envs.dawtwostep.DawTwoStep"><code class="xref py py-class docutils literal notranslate"><span class="pre">DawTwoStep-v0</span></code></a>
+<a class="reference internal" href="envs/DelayComparison-v0.html#neurogym.envs.delaycomparison.DelayComparison" title="neurogym.envs.delaycomparison.DelayComparison"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayComparison-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchCategory-v0.html#neurogym.envs.delaymatchcategory.DelayMatchCategory" title="neurogym.envs.delaymatchcategory.DelayMatchCategory"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchCategory-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchSample-v0.html#neurogym.envs.delaymatchsample.DelayMatchSample" title="neurogym.envs.delaymatchsample.DelayMatchSample"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchSample-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchSampleDistractor1D-v0.html#neurogym.envs.delaymatchsample.DelayMatchSampleDistractor1D" title="neurogym.envs.delaymatchsample.DelayMatchSampleDistractor1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchSampleDistractor1D-v0</span></code></a>
+<a class="reference internal" href="envs/DualDelayMatchSample-v0.html#neurogym.envs.dualdelaymatchsample.DualDelayMatchSample" title="neurogym.envs.dualdelaymatchsample.DualDelayMatchSample"><code class="xref py py-class docutils literal notranslate"><span class="pre">DualDelayMatchSample-v0</span></code></a>
+<a class="reference internal" href="envs/HierarchicalReasoning-v0.html#neurogym.envs.hierarchicalreasoning.HierarchicalReasoning" title="neurogym.envs.hierarchicalreasoning.HierarchicalReasoning"><code class="xref py py-class docutils literal notranslate"><span class="pre">HierarchicalReasoning-v0</span></code></a>
+<a class="reference internal" href="envs/IntervalDiscrimination-v0.html#neurogym.envs.intervaldiscrimination.IntervalDiscrimination" title="neurogym.envs.intervaldiscrimination.IntervalDiscrimination"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalDiscrimination-v0</span></code></a>
+<a class="reference internal" href="envs/MatchingPenny-v0.html#neurogym.envs.matchingpenny.MatchingPenny" title="neurogym.envs.matchingpenny.MatchingPenny"><code class="xref py py-class docutils literal notranslate"><span class="pre">MatchingPenny-v0</span></code></a>
+<a class="reference internal" href="envs/MultiSensoryIntegration-v0.html#neurogym.envs.multisensory.MultiSensoryIntegration" title="neurogym.envs.multisensory.MultiSensoryIntegration"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiSensoryIntegration-v0</span></code></a>
+<a class="reference internal" href="envs/PerceptualDecisionMaking-v0.html#neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMaking" title="neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerceptualDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/PerceptualDecisionMakingDelayResponse-v0.html#neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMakingDelayResponse" title="neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMakingDelayResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerceptualDecisionMakingDelayResponse-v0</span></code></a>
+<a class="reference internal" href="envs/ProbabilisticReasoning-v0.html#neurogym.envs.weatherprediction.ProbabilisticReasoning" title="neurogym.envs.weatherprediction.ProbabilisticReasoning"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProbabilisticReasoning-v0</span></code></a>
+<a class="reference internal" href="envs/PulseDecisionMaking-v0.html#neurogym.envs.perceptualdecisionmaking.PulseDecisionMaking" title="neurogym.envs.perceptualdecisionmaking.PulseDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">PulseDecisionMaking-v0</span></code></a>
+<a class="reference internal" href="envs/SingleContextDecisionMaking-v0.html#neurogym.envs.contextdecisionmaking.SingleContextDecisionMaking" title="neurogym.envs.contextdecisionmaking.SingleContextDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">SingleContextDecisionMaking-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="value-based">
+<span id="tag-value-based"></span><h2>value-based<a class="headerlink" href="#value-based" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/EconomicDecisionMaking-v0.html#neurogym.envs.economicdecisionmaking.EconomicDecisionMaking" title="neurogym.envs.economicdecisionmaking.EconomicDecisionMaking"><code class="xref py py-class docutils literal notranslate"><span class="pre">EconomicDecisionMaking-v0</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="working-memory">
+<span id="tag-working-memory"></span><h2>working memory<a class="headerlink" href="#working-memory" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><a class="reference internal" href="envs/AngleReproduction-v0.html#neurogym.envs.anglereproduction.AngleReproduction" title="neurogym.envs.anglereproduction.AngleReproduction"><code class="xref py py-class docutils literal notranslate"><span class="pre">AngleReproduction-v0</span></code></a>
+<a class="reference internal" href="envs/DelayComparison-v0.html#neurogym.envs.delaycomparison.DelayComparison" title="neurogym.envs.delaycomparison.DelayComparison"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayComparison-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchCategory-v0.html#neurogym.envs.delaymatchcategory.DelayMatchCategory" title="neurogym.envs.delaymatchcategory.DelayMatchCategory"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchCategory-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchSample-v0.html#neurogym.envs.delaymatchsample.DelayMatchSample" title="neurogym.envs.delaymatchsample.DelayMatchSample"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchSample-v0</span></code></a>
+<a class="reference internal" href="envs/DelayMatchSampleDistractor1D-v0.html#neurogym.envs.delaymatchsample.DelayMatchSampleDistractor1D" title="neurogym.envs.delaymatchsample.DelayMatchSampleDistractor1D"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayMatchSampleDistractor1D-v0</span></code></a>
+<a class="reference internal" href="envs/DelayPairedAssociation-v0.html#neurogym.envs.delaypairedassociation.DelayPairedAssociation" title="neurogym.envs.delaypairedassociation.DelayPairedAssociation"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayPairedAssociation-v0</span></code></a>
+<a class="reference internal" href="envs/DualDelayMatchSample-v0.html#neurogym.envs.dualdelaymatchsample.DualDelayMatchSample" title="neurogym.envs.dualdelaymatchsample.DualDelayMatchSample"><code class="xref py py-class docutils literal notranslate"><span class="pre">DualDelayMatchSample-v0</span></code></a>
+<a class="reference internal" href="envs/IntervalDiscrimination-v0.html#neurogym.envs.intervaldiscrimination.IntervalDiscrimination" title="neurogym.envs.intervaldiscrimination.IntervalDiscrimination"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalDiscrimination-v0</span></code></a></p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="wrappers.html" class="btn btn-neutral float-right" title="Wrappers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="envs/psychopy.VisualSearch-v0.html" class="btn btn-neutral float-left" title="psychopy.VisualSearch-v0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Manuel Molano, Guangyu Robert Yang, &amp; contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

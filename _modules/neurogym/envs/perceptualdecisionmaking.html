@@ -1,0 +1,543 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>neurogym.envs.perceptualdecisionmaking &mdash; neurogym  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        <script src="../../../_static/katex_autorenderer.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/katex-math.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> neurogym
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installing.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_neurogym_rl.html">Reinforcement learning example with stable-baselines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_neurogym_pytorch.html">Pytorch supervised learning of perceptual decision making task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_neurogym_keras.html">Keras example of supervised learning a NeuroGym task</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../envs/index.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tags.html">Tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../wrappers.html">Wrappers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">neurogym</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>neurogym.envs.perceptualdecisionmaking</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for neurogym.envs.perceptualdecisionmaking</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Random dot motion task.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">gym</span> <span class="kn">import</span> <span class="n">spaces</span>
+
+<span class="kn">import</span> <span class="nn">neurogym</span> <span class="k">as</span> <span class="nn">ngym</span>
+
+
+<div class="viewcode-block" id="PerceptualDecisionMaking"><a class="viewcode-back" href="../../../envs/PerceptualDecisionMaking-v0.html#neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMaking">[docs]</a><span class="k">class</span> <span class="nc">PerceptualDecisionMaking</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Two-alternative forced choice task in which the subject has to</span>
+<span class="sd">    integrate two stimuli to decide which one is higher on average.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        stim_scale: Controls the difficulty of the experiment. (def: 1., float)</span>
+<span class="sd">        sigma: float, input noise level</span>
+<span class="sd">        dim_ring: int, dimension of ring input and output</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.jneurosci.org/content/12/12/4745&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;paper_name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;The analysis of visual motion: a comparison of</span>
+<span class="s1">        neuronal and psychophysical performance&#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;perceptual&#39;</span><span class="p">,</span> <span class="s1">&#39;two-alternative&#39;</span><span class="p">,</span> <span class="s1">&#39;supervised&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stim_scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                 <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">dim_ring</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+        <span class="c1"># The strength of evidence, modulated by stim_scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cohs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">12.8</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">,</span> <span class="mf">51.2</span><span class="p">])</span> <span class="o">*</span> <span class="n">stim_scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>  <span class="c1"># Input noise</span>
+
+        <span class="c1"># Rewards</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;abort&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;correct&#39;</span><span class="p">:</span> <span class="o">+</span><span class="mf">1.</span><span class="p">,</span> <span class="s1">&#39;fail&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">rewards</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">timing</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="s1">&#39;stimulus&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+            <span class="s1">&#39;delay&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;decision&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">timing</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">timing</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">abort</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">dim_ring</span><span class="o">+</span><span class="mi">1</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">dim_ring</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span>
+            <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dim_ring</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ob_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;stimulus&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim_ring</span><span class="o">+</span><span class="mi">1</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dim_ring</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">act_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;choice&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim_ring</span><span class="o">+</span><span class="mi">1</span><span class="p">)}</span>
+
+    <span class="k">def</span> <span class="nf">_new_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        new_trial() is called when a trial ends to generate the next trial.</span>
+<span class="sd">        The following variables are created:</span>
+<span class="sd">            durations, which stores the duration of the different periods (in</span>
+<span class="sd">            the case of perceptualDecisionMaking: fixation, stimulus and</span>
+<span class="sd">            decision periods)</span>
+<span class="sd">            ground truth: correct response for the trial</span>
+<span class="sd">            coh: stimulus coherence (evidence) for the trial</span>
+<span class="sd">            obs: observation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Trial info</span>
+        <span class="n">trial</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;ground_truth&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">),</span>
+            <span class="s1">&#39;coh&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cohs</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">trial</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">coh</span> <span class="o">=</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;coh&#39;</span><span class="p">]</span>
+        <span class="n">ground_truth</span> <span class="o">=</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">]</span>
+        <span class="n">stim_theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="n">ground_truth</span><span class="p">]</span>
+
+        <span class="c1"># Periods</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_period</span><span class="p">([</span><span class="s1">&#39;fixation&#39;</span><span class="p">,</span> <span class="s1">&#39;stimulus&#39;</span><span class="p">,</span> <span class="s1">&#39;delay&#39;</span><span class="p">,</span> <span class="s1">&#39;decision&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Observations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fixation&#39;</span><span class="p">,</span> <span class="s1">&#39;stimulus&#39;</span><span class="p">,</span> <span class="s1">&#39;delay&#39;</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;fixation&#39;</span><span class="p">)</span>
+        <span class="n">stim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">-</span> <span class="n">stim_theta</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">coh</span><span class="o">/</span><span class="mi">200</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="n">stim</span><span class="p">,</span> <span class="s1">&#39;stimulus&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;stimulus&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_randn</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span> <span class="s1">&#39;stimulus&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;stimulus&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Ground truth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_groundtruth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">act_dict</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">][</span><span class="n">ground_truth</span><span class="p">],</span> <span class="s1">&#39;decision&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">trial</span>
+
+    <span class="k">def</span> <span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        _step receives an action and returns:</span>
+<span class="sd">            a new observation, obs</span>
+<span class="sd">            reward associated with the action, reward</span>
+<span class="sd">            a boolean variable indicating whether the experiment has end, done</span>
+<span class="sd">            a dictionary with extra information:</span>
+<span class="sd">                ground truth correct response, info[&#39;gt&#39;]</span>
+<span class="sd">                boolean indicating the end of the trial, info[&#39;new_trial&#39;]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># rewards</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_now</span>
+        <span class="c1"># observations</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;fixation&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># action = 0 means fixating</span>
+                <span class="n">new_trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">abort</span>
+                <span class="n">reward</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;abort&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;decision&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="n">gt</span><span class="p">:</span>
+                    <span class="n">reward</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">performance</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">reward</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;fail&#39;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
+
+
+<span class="c1">#  TODO: there should be a timeout of 1000ms for incorrect trials</span>
+<div class="viewcode-block" id="PerceptualDecisionMakingDelayResponse"><a class="viewcode-back" href="../../../envs/PerceptualDecisionMakingDelayResponse-v0.html#neurogym.envs.perceptualdecisionmaking.PerceptualDecisionMakingDelayResponse">[docs]</a><span class="k">class</span> <span class="nc">PerceptualDecisionMakingDelayResponse</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Perceptual decision-making with delayed responses.</span>
+
+<span class="sd">    Agents have to integrate two stimuli and report which one is</span>
+<span class="sd">    larger on average after a delay.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        stim_scale: Controls the difficulty of the experiment. (def: 1., float)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.nature.com/articles/s41586-019-0919-7&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;paper_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Discrete attractor dynamics underlies persistent&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39; activity in the frontal cortex&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;perceptual&#39;</span><span class="p">,</span> <span class="s1">&#39;delayed response&#39;</span><span class="p">,</span> <span class="s1">&#39;two-alternative&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;supervised&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stim_scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                 <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="c1"># cohs specifies the amount of evidence (modulated by stim_scale)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cohs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">12.8</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">,</span> <span class="mf">51.2</span><span class="p">])</span><span class="o">*</span><span class="n">stim_scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>  <span class="c1"># Input noise</span>
+
+        <span class="c1"># Rewards</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;abort&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;correct&#39;</span><span class="p">:</span> <span class="o">+</span><span class="mf">1.</span><span class="p">,</span>
+                        <span class="s1">&#39;fail&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">rewards</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">timing</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;stimulus&#39;</span><span class="p">:</span> <span class="mi">1150</span><span class="p">,</span>
+            <span class="c1">#  TODO: sampling of delays follows exponential</span>
+            <span class="s1">&#39;delay&#39;</span><span class="p">:(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">3200</span><span class="p">,</span> <span class="mi">4000</span><span class="p">),</span>
+            <span class="c1"># &#39;go_cue&#39;: 100, # TODO: Not implemented</span>
+            <span class="s1">&#39;decision&#39;</span><span class="p">:</span> <span class="mi">1500</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">timing</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">timing</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">abort</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># action and observation spaces</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+                                            <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_new_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># ---------------------------------------------------------------------</span>
+        <span class="c1"># Trial</span>
+        <span class="c1"># ---------------------------------------------------------------------</span>
+        <span class="n">trial</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;ground_truth&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">),</span>
+            <span class="s1">&#39;coh&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cohs</span><span class="p">),</span>
+            <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">trial</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># ---------------------------------------------------------------------</span>
+        <span class="c1"># Periods</span>
+        <span class="c1"># ---------------------------------------------------------------------</span>
+        <span class="n">periods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fixation&#39;</span><span class="p">,</span> <span class="s1">&#39;stimulus&#39;</span><span class="p">,</span> <span class="s1">&#39;delay&#39;</span><span class="p">,</span> <span class="s1">&#39;decision&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_period</span><span class="p">(</span><span class="n">periods</span><span class="p">)</span>
+
+        <span class="c1"># define observations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_ob</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;fixation&#39;</span><span class="p">)</span>
+        <span class="n">stim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_ob</span><span class="p">(</span><span class="s1">&#39;stimulus&#39;</span><span class="p">)</span>
+        <span class="n">stim</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">stim</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;coh&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">stim</span><span class="p">[:,</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;coh&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">stim</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span>\
+            <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">stim</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;sigma&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_ob</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;delay&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_groundtruth</span><span class="p">(</span><span class="n">trial</span><span class="p">[</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">],</span> <span class="s1">&#39;decision&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">trial</span>
+
+    <span class="k">def</span> <span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+        <span class="c1"># ---------------------------------------------------------------------</span>
+        <span class="c1"># Reward and observations</span>
+        <span class="c1"># ---------------------------------------------------------------------</span>
+        <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># rewards</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># observations</span>
+        <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_now</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;fixation&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">new_trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">abort</span>
+                <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;abort&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;decision&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="n">gt</span><span class="p">:</span>
+                <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">performance</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">-</span> <span class="n">gt</span><span class="p">:</span>  <span class="c1"># 3-action is the other act</span>
+                <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;fail&#39;</span><span class="p">]</span>
+
+        <span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">info</span></div>
+
+
+<div class="viewcode-block" id="PulseDecisionMaking"><a class="viewcode-back" href="../../../envs/PulseDecisionMaking-v0.html#neurogym.envs.perceptualdecisionmaking.PulseDecisionMaking">[docs]</a><span class="k">class</span> <span class="nc">PulseDecisionMaking</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Pulse-based decision making task.</span>
+
+<span class="sd">    Discrete stimuli are presented briefly as pulses.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        p_pulse: array-like, probability of pulses for each choice</span>
+<span class="sd">        n_bin: int, number of stimulus bins</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://elifesciences.org/articles/11308&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;paper_name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;Sources of noise during accumulation of evidence in</span>
+<span class="s1">        unrestrained and voluntarily head-restrained rats&#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;perceptual&#39;</span><span class="p">,</span> <span class="s1">&#39;two-alternative&#39;</span><span class="p">,</span> <span class="s1">&#39;supervised&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p_pulse</span><span class="o">=</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span>
+                 <span class="n">n_bin</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_pulse</span> <span class="o">=</span> <span class="n">p_pulse</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_bin</span> <span class="o">=</span> <span class="n">n_bin</span>
+
+        <span class="c1"># Rewards</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;abort&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;correct&#39;</span><span class="p">:</span> <span class="o">+</span><span class="mf">1.</span><span class="p">,</span> <span class="s1">&#39;fail&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">rewards</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">timing</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+            <span class="s1">&#39;decision&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bin</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timing</span><span class="p">[</span><span class="s1">&#39;cue&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">10</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timing</span><span class="p">[</span><span class="s1">&#39;bin&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">240</span>
+        <span class="k">if</span> <span class="n">timing</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">timing</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">abort</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span>
+            <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ob_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;stimulus&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">act_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;choice&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
+
+    <span class="k">def</span> <span class="nf">_new_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># Trial info</span>
+        <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_pulse</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+            <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p1</span>
+        <span class="n">pulse1</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_bin</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">p1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.0</span>
+        <span class="n">pulse2</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_bin</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.0</span>
+        <span class="n">trial</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pulse1&#39;</span><span class="p">:</span> <span class="n">pulse1</span><span class="p">,</span> <span class="s1">&#39;pulse2&#39;</span><span class="p">:</span> <span class="n">pulse2</span><span class="p">}</span>
+        <span class="n">trial</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">n_pulse1</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pulse1</span><span class="p">)</span>
+        <span class="n">n_pulse2</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pulse2</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">ground_truth</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_pulse1</span> <span class="o">&lt;</span> <span class="n">n_pulse2</span><span class="p">)</span>
+        <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ground_truth</span>
+
+        <span class="c1"># Periods</span>
+        <span class="n">periods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fixation&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_bin</span><span class="p">):</span>
+            <span class="n">periods</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;cue&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="s1">&#39;bin&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>
+        <span class="n">periods</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;decision&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_period</span><span class="p">(</span><span class="n">periods</span><span class="p">)</span>
+
+        <span class="c1"># Observations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;fixation&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_bin</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="n">pulse1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;cue&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">where</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="n">pulse2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;cue&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">where</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_ob</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;decision&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Ground truth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_groundtruth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">act_dict</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">][</span><span class="n">ground_truth</span><span class="p">],</span> <span class="s1">&#39;decision&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">trial</span>
+
+    <span class="k">def</span> <span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+        <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># rewards</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_now</span>
+        <span class="c1"># observations</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;decision&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="n">gt</span><span class="p">:</span>
+                    <span class="n">reward</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">performance</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">reward</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;fail&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># action = 0 means fixating</span>
+                <span class="n">new_trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">abort</span>
+                <span class="n">reward</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;abort&#39;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">PerceptualDecisionMaking</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                                   <span class="n">timing</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;stimulus&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">})</span>
+    <span class="n">ngym</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">plot_env</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">def_act</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># env = PerceptualDecisionMakingDelayResponse()</span>
+    <span class="c1"># ngym.utils.plot_env(env, num_steps=100, def_act=1)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Manuel Molano, Guangyu Robert Yang, &amp; contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

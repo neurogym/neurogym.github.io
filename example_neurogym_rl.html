@@ -1,0 +1,932 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Reinforcement learning example with stable-baselines &mdash; neurogym  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        <script src="_static/katex_autorenderer.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Keras example of supervised learning a NeuroGym task" href="example_neurogym_keras.html" />
+    <link rel="prev" title="Exploring NeuroGym tasks" href="demo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> neurogym
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Exploring NeuroGym tasks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reinforcement learning example with stable-baselines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Task">Task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Train-a-network">Train a network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Visualize-results">Visualize results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example_neurogym_keras.html">Keras example of supervised learning a NeuroGym task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_neurogym_pytorch.html">Pytorch supervised learning of perceptual decision making task</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="envs/index.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tags.html">Tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrappers.html">Wrappers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">neurogym</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Reinforcement learning example with stable-baselines</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/example_neurogym_rl.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Reinforcement-learning-example-with-stable-baselines">
+<h1>Reinforcement learning example with stable-baselines<a class="headerlink" href="#Reinforcement-learning-example-with-stable-baselines" title="Permalink to this headline">¶</a></h1>
+<p>NeuroGym is a comprehensive toolkit that allows training any network model on many established neuroscience tasks techniques such as standard Supervised Learning or Reinforcement Learning (RL). In this notebook we will use RL to train an LSTM network on the classical Random Dots Motion (RDM) task (Britten et al. 1992).</p>
+<p>We first show how to install the relevant toolboxes. We then show how build the task of interest (in the example the RDM task), wrapp it with the pass-reward wrapper in one line and visualize the structure of the final task. Finally we train an LSTM network on the task using the A2C algorithm <a class="reference external" href="https://arxiv.org/abs/1602.01783">Mnih et al. 2016</a> implemented in the <a class="reference external" href="https://github.com/hill-a/stable-baselines">stable-baselines</a> toolbox, and plot the results.</p>
+<p>It is straightforward to change the code to train a network on any other available task or using a different RL algorithm (e.g. ACER, PPO2).</p>
+<div class="section" id="Installation">
+<h2>Installation<a class="headerlink" href="#Installation" title="Permalink to this headline">¶</a></h2>
+<p>(only for running in Google Colab)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">tensorflow_version</span> 1.x
+<span class="c1"># Install gym</span>
+<span class="o">!</span> pip install gym
+<span class="c1"># Install neurogym</span>
+<span class="o">!</span> git clone https://github.com/gyyang/neurogym.git
+<span class="o">%</span><span class="k">cd</span> neurogym/
+<span class="o">!</span> pip install -e .
+<span class="c1"># Install stable-baselines</span>
+<span class="o">!</span> pip install --upgrade stable-baselines
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+TensorFlow 1.x selected.
+Requirement already satisfied: gym in /usr/local/lib/python3.6/dist-packages (0.17.2)
+Requirement already satisfied: scipy in /usr/local/lib/python3.6/dist-packages (from gym) (1.4.1)
+Requirement already satisfied: cloudpickle&lt;1.4.0,&gt;=1.2.0 in /usr/local/lib/python3.6/dist-packages (from gym) (1.3.0)
+Requirement already satisfied: numpy&gt;=1.10.4 in /usr/local/lib/python3.6/dist-packages (from gym) (1.18.5)
+Requirement already satisfied: pyglet&lt;=1.5.0,&gt;=1.4.0 in /usr/local/lib/python3.6/dist-packages (from gym) (1.5.0)
+Requirement already satisfied: future in /usr/local/lib/python3.6/dist-packages (from pyglet&lt;=1.5.0,&gt;=1.4.0-&gt;gym) (0.16.0)
+fatal: destination path &#39;neurogym&#39; already exists and is not an empty directory.
+/content/neurogym
+Obtaining file:///content/neurogym
+Requirement already satisfied: numpy in /usr/local/lib/python3.6/dist-packages (from neurogym==0.0.1) (1.18.5)
+Requirement already satisfied: gym in /usr/local/lib/python3.6/dist-packages (from neurogym==0.0.1) (0.17.2)
+Requirement already satisfied: matplotlib in /usr/local/lib/python3.6/dist-packages (from neurogym==0.0.1) (3.2.2)
+Requirement already satisfied: pyglet&lt;=1.5.0,&gt;=1.4.0 in /usr/local/lib/python3.6/dist-packages (from gym-&gt;neurogym==0.0.1) (1.5.0)
+Requirement already satisfied: scipy in /usr/local/lib/python3.6/dist-packages (from gym-&gt;neurogym==0.0.1) (1.4.1)
+Requirement already satisfied: cloudpickle&lt;1.4.0,&gt;=1.2.0 in /usr/local/lib/python3.6/dist-packages (from gym-&gt;neurogym==0.0.1) (1.3.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;neurogym==0.0.1) (1.2.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;neurogym==0.0.1) (2.4.7)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;neurogym==0.0.1) (0.10.0)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;neurogym==0.0.1) (2.8.1)
+Requirement already satisfied: future in /usr/local/lib/python3.6/dist-packages (from pyglet&lt;=1.5.0,&gt;=1.4.0-&gt;gym-&gt;neurogym==0.0.1) (0.16.0)
+Requirement already satisfied: six in /usr/local/lib/python3.6/dist-packages (from cycler&gt;=0.10-&gt;matplotlib-&gt;neurogym==0.0.1) (1.12.0)
+Installing collected packages: neurogym
+  Found existing installation: neurogym 0.0.1
+    Can&#39;t uninstall &#39;neurogym&#39;. No files were found to uninstall.
+  Running setup.py develop for neurogym
+Successfully installed neurogym
+Requirement already up-to-date: stable-baselines in /usr/local/lib/python3.6/dist-packages (2.10.0)
+Requirement already satisfied, skipping upgrade: scipy in /usr/local/lib/python3.6/dist-packages (from stable-baselines) (1.4.1)
+Requirement already satisfied, skipping upgrade: opencv-python in /usr/local/lib/python3.6/dist-packages (from stable-baselines) (4.1.2.30)
+Requirement already satisfied, skipping upgrade: numpy in /usr/local/lib/python3.6/dist-packages (from stable-baselines) (1.18.5)
+Requirement already satisfied, skipping upgrade: matplotlib in /usr/local/lib/python3.6/dist-packages (from stable-baselines) (3.2.2)
+Requirement already satisfied, skipping upgrade: gym[atari,classic_control]&gt;=0.11 in /usr/local/lib/python3.6/dist-packages (from stable-baselines) (0.17.2)
+Requirement already satisfied, skipping upgrade: joblib in /usr/local/lib/python3.6/dist-packages (from stable-baselines) (0.15.1)
+Requirement already satisfied, skipping upgrade: cloudpickle&gt;=0.5.5 in /usr/local/lib/python3.6/dist-packages (from stable-baselines) (1.3.0)
+Requirement already satisfied, skipping upgrade: pandas in /usr/local/lib/python3.6/dist-packages (from stable-baselines) (1.0.5)
+Requirement already satisfied, skipping upgrade: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;stable-baselines) (2.4.7)
+Requirement already satisfied, skipping upgrade: python-dateutil&gt;=2.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;stable-baselines) (2.8.1)
+Requirement already satisfied, skipping upgrade: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;stable-baselines) (1.2.0)
+Requirement already satisfied, skipping upgrade: cycler&gt;=0.10 in /usr/local/lib/python3.6/dist-packages (from matplotlib-&gt;stable-baselines) (0.10.0)
+Requirement already satisfied, skipping upgrade: pyglet&lt;=1.5.0,&gt;=1.4.0 in /usr/local/lib/python3.6/dist-packages (from gym[atari,classic_control]&gt;=0.11-&gt;stable-baselines) (1.5.0)
+Requirement already satisfied, skipping upgrade: Pillow; extra == &#34;atari&#34; in /usr/local/lib/python3.6/dist-packages (from gym[atari,classic_control]&gt;=0.11-&gt;stable-baselines) (7.0.0)
+Requirement already satisfied, skipping upgrade: atari-py~=0.2.0; extra == &#34;atari&#34; in /usr/local/lib/python3.6/dist-packages (from gym[atari,classic_control]&gt;=0.11-&gt;stable-baselines) (0.2.6)
+Requirement already satisfied, skipping upgrade: pytz&gt;=2017.2 in /usr/local/lib/python3.6/dist-packages (from pandas-&gt;stable-baselines) (2018.9)
+Requirement already satisfied, skipping upgrade: six&gt;=1.5 in /usr/local/lib/python3.6/dist-packages (from python-dateutil&gt;=2.1-&gt;matplotlib-&gt;stable-baselines) (1.12.0)
+Requirement already satisfied, skipping upgrade: future in /usr/local/lib/python3.6/dist-packages (from pyglet&lt;=1.5.0,&gt;=1.4.0-&gt;gym[atari,classic_control]&gt;=0.11-&gt;stable-baselines) (0.16.0)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Task">
+<h2>Task<a class="headerlink" href="#Task" title="Permalink to this headline">¶</a></h2>
+<p>here we build the Random Dots Motion task, specifying the duration of each trial period (fixation, stimulus, decision) and wrapp it with the pass-reward wrapper which appends the previous reward to the observation. We then plot the structure of the task in a figure that shows: 1. The observations received by the agent (top panel). 2. The actions taken by a random agent and the correct action at each timestep (second panel). 3. The rewards provided by the environment at each timestep (third
+panel). 4. The performance of the agent at each trial (bottom panel).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">neurogym</span> <span class="k">as</span> <span class="nn">ngym</span>
+<span class="kn">from</span> <span class="nn">neurogym.wrappers</span> <span class="kn">import</span> <span class="n">pass_reward</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="c1"># Task name</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;PerceptualDecisionMaking-v0&#39;</span>
+<span class="c1"># task specification (here we only specify the duration of the different trial periods)</span>
+<span class="n">timing</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span>
+          <span class="s1">&#39;stimulus&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+          <span class="s1">&#39;decision&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)}</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dt&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;timing&#39;</span><span class="p">:</span> <span class="n">timing</span><span class="p">}</span>
+<span class="c1"># build task</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="c1"># print task properties</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+<span class="c1"># wrapp task with pass-reward wrapper</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">pass_reward</span><span class="o">.</span><span class="n">PassReward</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+<span class="c1"># plot example trials with random agent</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ngym</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">plot_env</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">fig_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">)},</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ob_traces</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Fixation cue&#39;</span><span class="p">,</span> <span class="s1">&#39;Stim 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Stim 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Previous reward&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+findfont: Font family [&#39;arial&#39;] not found. Falling back to DejaVu Sans.
+findfont: Font family [&#39;arial&#39;] not found. Falling back to DejaVu Sans.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+### PerceptualDecisionMaking
+Doc: Two-alternative forced choice task in which the subject has to
+    integrate two stimuli to decide which one is higher on average.
+
+    Args:
+        stim_scale: Controls the difficulty of the experiment. (def: 1., float)
+        sigma: float, input noise level
+        dim_ring: int, dimension of ring input and output
+
+Reference paper
+[The analysis of visual motion: a comparison of neuronal and psychophysical performance](https://www.jneurosci.org/content/12/12/4745)
+
+Period timing (ms)
+fixation : constant 300
+stimulus : constant 500
+delay : constant 0
+decision : constant 300
+
+Reward structure
+abort : -0.1
+correct : 1.0
+fail : 0.0
+
+Tags: perceptual, two-alternative, supervised.
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/example_neurogym_rl_8_2.png" src="_images/example_neurogym_rl_8_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Train-a-network">
+<h2>Train a network<a class="headerlink" href="#Train-a-network" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">stable_baselines.common.policies</span> <span class="kn">import</span> <span class="n">LstmPolicy</span>
+<span class="kn">from</span> <span class="nn">stable_baselines.common.vec_env</span> <span class="kn">import</span> <span class="n">DummyVecEnv</span>
+<span class="kn">from</span> <span class="nn">stable_baselines</span> <span class="kn">import</span> <span class="n">A2C</span>  <span class="c1"># ACER, PPO2</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
+
+<span class="c1"># Optional: PPO2 requires a vectorized environment to run</span>
+<span class="c1"># the env is now wrapped automatically when passing it to the constructor</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">DummyVecEnv</span><span class="p">([</span><span class="k">lambda</span><span class="p">:</span> <span class="n">env</span><span class="p">])</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">A2C</span><span class="p">(</span><span class="n">LstmPolicy</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">policy_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;feature_extraction&#39;</span><span class="p">:</span><span class="s2">&quot;mlp&quot;</span><span class="p">})</span>
+<span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">log_interval</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/common/tf_util.py:191: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/common/tf_util.py:200: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/common/policies.py:116: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/common/input.py:25: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/common/policies.py:420: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+WARNING:tensorflow:From /tensorflow-1.15.2/python3.6/tensorflow_core/python/layers/core.py:332: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/common/tf_layers.py:123: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/common/distributions.py:326: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/common/distributions.py:327: The name tf.log is deprecated. Please use tf.math.log instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/a2c/a2c.py:158: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/common/tf_util.py:449: The name tf.get_collection is deprecated. Please use tf.compat.v1.get_collection instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/common/tf_util.py:449: The name tf.GraphKeys is deprecated. Please use tf.compat.v1.GraphKeys instead.
+
+WARNING:tensorflow:From /tensorflow-1.15.2/python3.6/tensorflow_core/python/ops/clip_ops.py:301: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/a2c/a2c.py:182: The name tf.train.RMSPropOptimizer is deprecated. Please use tf.compat.v1.train.RMSPropOptimizer instead.
+
+WARNING:tensorflow:From /tensorflow-1.15.2/python3.6/tensorflow_core/python/training/rmsprop.py:119: calling Ones.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/a2c/a2c.py:192: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/stable_baselines/a2c/a2c.py:194: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+---------------------------------
+| explained_variance | -0.477   |
+| fps                | 10       |
+| nupdates           | 1        |
+| policy_entropy     | 1.1      |
+| total_timesteps    | 5        |
+| value_loss         | 0.00289  |
+---------------------------------
+---------------------------------
+| explained_variance | -0.907   |
+| fps                | 351      |
+| nupdates           | 1000     |
+| policy_entropy     | 1.1      |
+| total_timesteps    | 5000     |
+| value_loss         | 0.0147   |
+---------------------------------
+---------------------------------
+| explained_variance | 0.517    |
+| fps                | 356      |
+| nupdates           | 2000     |
+| policy_entropy     | 1.07     |
+| total_timesteps    | 10000    |
+| value_loss         | 0.554    |
+---------------------------------
+---------------------------------
+| explained_variance | 0.182    |
+| fps                | 359      |
+| nupdates           | 3000     |
+| policy_entropy     | 1.05     |
+| total_timesteps    | 15000    |
+| value_loss         | 0.0563   |
+---------------------------------
+---------------------------------
+| explained_variance | 0.558    |
+| fps                | 358      |
+| nupdates           | 4000     |
+| policy_entropy     | 0.808    |
+| total_timesteps    | 20000    |
+| value_loss         | 0.166    |
+---------------------------------
+---------------------------------
+| explained_variance | 0.99     |
+| fps                | 358      |
+| nupdates           | 5000     |
+| policy_entropy     | 0.189    |
+| total_timesteps    | 25000    |
+| value_loss         | 0.00343  |
+---------------------------------
+---------------------------------
+| explained_variance | 0.991    |
+| fps                | 360      |
+| nupdates           | 6000     |
+| policy_entropy     | 0.117    |
+| total_timesteps    | 30000    |
+| value_loss         | 0.00305  |
+---------------------------------
+---------------------------------
+| explained_variance | 0.914    |
+| fps                | 362      |
+| nupdates           | 7000     |
+| policy_entropy     | 0.212    |
+| total_timesteps    | 35000    |
+| value_loss         | 0.013    |
+---------------------------------
+---------------------------------
+| explained_variance | 0.957    |
+| fps                | 362      |
+| nupdates           | 8000     |
+| policy_entropy     | 0.0404   |
+| total_timesteps    | 40000    |
+| value_loss         | 0.026    |
+---------------------------------
+---------------------------------
+| explained_variance | 0.934    |
+| fps                | 360      |
+| nupdates           | 9000     |
+| policy_entropy     | 0.27     |
+| total_timesteps    | 45000    |
+| value_loss         | 0.011    |
+---------------------------------
+---------------------------------
+| explained_variance | 0.976    |
+| fps                | 360      |
+| nupdates           | 10000    |
+| policy_entropy     | 0.509    |
+| total_timesteps    | 50000    |
+| value_loss         | 0.00139  |
+---------------------------------
+---------------------------------
+| explained_variance | 0.991    |
+| fps                | 360      |
+| nupdates           | 11000    |
+| policy_entropy     | 0.0325   |
+| total_timesteps    | 55000    |
+| value_loss         | 0.00196  |
+---------------------------------
+---------------------------------
+| explained_variance | 0.996    |
+| fps                | 361      |
+| nupdates           | 12000    |
+| policy_entropy     | 0.211    |
+| total_timesteps    | 60000    |
+| value_loss         | 0.000678 |
+---------------------------------
+---------------------------------
+| explained_variance | 0.684    |
+| fps                | 361      |
+| nupdates           | 13000    |
+| policy_entropy     | 0.2      |
+| total_timesteps    | 65000    |
+| value_loss         | 0.00527  |
+---------------------------------
+---------------------------------
+| explained_variance | 0.968    |
+| fps                | 361      |
+| nupdates           | 14000    |
+| policy_entropy     | 0.424    |
+| total_timesteps    | 70000    |
+| value_loss         | 0.00391  |
+---------------------------------
+---------------------------------
+| explained_variance | 0.851    |
+| fps                | 362      |
+| nupdates           | 15000    |
+| policy_entropy     | 0.384    |
+| total_timesteps    | 75000    |
+| value_loss         | 0.0313   |
+---------------------------------
+---------------------------------
+| explained_variance | 0.977    |
+| fps                | 361      |
+| nupdates           | 16000    |
+| policy_entropy     | 0.0187   |
+| total_timesteps    | 80000    |
+| value_loss         | 0.00316  |
+---------------------------------
+---------------------------------
+| explained_variance | 0.994    |
+| fps                | 362      |
+| nupdates           | 17000    |
+| policy_entropy     | 0.0252   |
+| total_timesteps    | 85000    |
+| value_loss         | 0.000824 |
+---------------------------------
+---------------------------------
+| explained_variance | 0.957    |
+| fps                | 362      |
+| nupdates           | 18000    |
+| policy_entropy     | 0.206    |
+| total_timesteps    | 90000    |
+| value_loss         | 0.00319  |
+---------------------------------
+---------------------------------
+| explained_variance | 0.992    |
+| fps                | 363      |
+| nupdates           | 19000    |
+| policy_entropy     | 0.0935   |
+| total_timesteps    | 95000    |
+| value_loss         | 0.00294  |
+---------------------------------
+---------------------------------
+| explained_variance | 0.978    |
+| fps                | 363      |
+| nupdates           | 20000    |
+| policy_entropy     | 0.0645   |
+| total_timesteps    | 100000   |
+| value_loss         | 0.000502 |
+---------------------------------
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Visualize-results">
+<h2>Visualize results<a class="headerlink" href="#Visualize-results" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="c1"># print task properties</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+<span class="c1"># wrapp task with pass-reward wrapper</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">pass_reward</span><span class="o">.</span><span class="n">PassReward</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">DummyVecEnv</span><span class="p">([</span><span class="k">lambda</span><span class="p">:</span> <span class="n">env</span><span class="p">])</span>
+<span class="c1"># plot example trials with random agent</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ngym</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">plot_env</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">fig_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">)},</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ob_traces</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Fixation cue&#39;</span><span class="p">,</span> <span class="s1">&#39;Stim 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Stim 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Previous reward&#39;</span><span class="p">],</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+### PerceptualDecisionMaking
+Doc: Two-alternative forced choice task in which the subject has to
+    integrate two stimuli to decide which one is higher on average.
+
+    Args:
+        stim_scale: Controls the difficulty of the experiment. (def: 1., float)
+        sigma: float, input noise level
+        dim_ring: int, dimension of ring input and output
+
+Reference paper
+[The analysis of visual motion: a comparison of neuronal and psychophysical performance](https://www.jneurosci.org/content/12/12/4745)
+
+Period timing (ms)
+fixation : constant 300
+stimulus : constant 500
+delay : constant 0
+decision : constant 300
+
+Reward structure
+abort : -0.1
+correct : 1.0
+fail : 0.0
+
+Tags: perceptual, two-alternative, supervised.
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/example_neurogym_rl_12_1.png" src="_images/example_neurogym_rl_12_1.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="example_neurogym_keras.html" class="btn btn-neutral float-right" title="Keras example of supervised learning a NeuroGym task" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="demo.html" class="btn btn-neutral float-left" title="Exploring NeuroGym tasks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Manuel Molano, Guangyu Robert Yang, &amp; contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

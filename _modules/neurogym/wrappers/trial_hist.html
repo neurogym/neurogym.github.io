@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>neurogym.wrappers.trial_hist &mdash; neurogym  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        <script src="../../../_static/katex_autorenderer.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/katex-math.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> neurogym
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installing.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_neurogym_rl.html">Reinforcement learning example with stable-baselines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_neurogym_pytorch.html">Pytorch supervised learning of perceptual decision making task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_neurogym_keras.html">Keras example of supervised learning a NeuroGym task</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../envs/index.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tags.html">Tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../wrappers.html">Wrappers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">neurogym</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>neurogym.wrappers.trial_hist</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for neurogym.wrappers.trial_hist</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">neurogym</span> <span class="k">as</span> <span class="nn">ngym</span>
+<span class="kn">from</span> <span class="nn">neurogym.core</span> <span class="kn">import</span> <span class="n">TrialWrapperV2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="TrialHistory"><a class="viewcode-back" href="../../../wrappers.html#neurogym.wrappers.trial_hist.TrialHistory">[docs]</a><span class="k">class</span> <span class="nc">TrialHistory</span><span class="p">(</span><span class="n">TrialWrapperV2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Change ground truth probability based on previous outcome.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        probs: matrix of probabilities of the current choice conditioned</span>
+<span class="sd">            on the previous for each block. (def: None, np.array,</span>
+<span class="sd">            num-blocks x num-choices x num-choices)</span>
+<span class="sd">        num_blocks: if 2, repeating and ascending blocks created; if 3,</span>
+<span class="sd">        an extra descending blocks is added</span>
+<span class="sd">        block_dur: Number of trials per block. (def: 200 (int))</span>
+<span class="sd">        blk_ch_prob: If not None, specifies the probability of changing block</span>
+<span class="sd">            (randomly). (def: None, float)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Change ground truth probability based on previous&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39;outcome.&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.biorxiv.org/content/10.1101/433409v3&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;paper_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Response outcomes gate the impact of expectations &#39;</span> <span class="o">+</span>
+        <span class="s1">&#39;on perceptual decisions&#39;</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">block_dur</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">num_blocks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                 <span class="n">blk_ch_prob</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rand_blcks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">balanced_probs</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_ch</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span>  <span class="c1"># max num of choices</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">th_choices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">choices</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_ch</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;SideBias requires task</span>
+<span class="s1">                                 to have attribute choices&#39;&#39;&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="p">,</span> <span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">),</span> <span class="s1">&#39;Task has to be TrialEnv&#39;</span>
+        <span class="k">assert</span> <span class="n">probs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Please provide choices probabilities&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">probs</span> <span class="o">=</span> <span class="n">probs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">balanced_probs</span> <span class="o">=</span> <span class="n">balanced_probs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_blocks</span> <span class="o">=</span> <span class="n">num_blocks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rand_blcks</span> <span class="o">=</span> <span class="n">rand_blcks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curr_tr_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans_probs</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_tr_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_ch</span><span class="p">,</span>\
+            <span class="s1">&#39;The number of choices </span><span class="si">{:d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tr_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span>\
+            <span class="s1">&#39; inferred from prob mismatchs </span><span class="si">{:d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_ch</span><span class="p">)</span> <span class="o">+</span>\
+            <span class="s1">&#39; inferred from choices&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_dur</span> <span class="o">=</span> <span class="n">block_dur</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prev_trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_ch</span><span class="p">)</span>  <span class="c1"># random initialization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blk_ch_prob</span> <span class="o">=</span> <span class="n">blk_ch_prob</span>
+
+    <span class="k">def</span> <span class="nf">new_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># ---------------------------------------------------------------------</span>
+        <span class="c1"># Periods</span>
+        <span class="c1"># ---------------------------------------------------------------------</span>
+        <span class="n">block_already_changed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># Check if n_ch is passed and if it is different from previous value</span>
+        <span class="k">if</span> <span class="s1">&#39;n_ch&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;n_ch&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;n_ch&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prev_trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">th_choices</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">curr_tr_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans_probs</span>
+            <span class="n">block_already_changed</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># change rep. prob. every self.block_dur trials</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">block_already_changed</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">blk_ch_prob</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">block_change</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">num_tr</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">block_dur</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">block_change</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">blk_ch_prob</span>
+            <span class="k">if</span> <span class="n">block_change</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rand_blcks</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">curr_tr_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans_probs</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">curr_block</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_block</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_blocks</span>
+
+        <span class="n">probs_curr_blk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_tr_mat</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_block</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prev_trial</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">ground_truth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">th_choices</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">],</span>
+                                                 <span class="n">p</span><span class="o">=</span><span class="n">probs_curr_blk</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prev_trial</span> <span class="o">=</span>\
+            <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">th_choices</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">]</span> <span class="o">==</span> <span class="n">ground_truth</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">:</span> <span class="n">ground_truth</span><span class="p">,</span>
+                       <span class="s1">&#39;curr_block&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_block</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">trans_probs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        if prob is float it creates the transition matrix</span>
+<span class="sd">        if prob is already a matrix it normalizes the probabilities and extracts</span>
+<span class="sd">        the subset corresponding to the current number of choices</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">probs</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rand_blcks</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">balanced_probs</span><span class="p">:</span>
+                    <span class="n">indx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">)</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">indx</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">indx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">,))</span>
+                <span class="n">tr_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">probs</span>
+                <span class="n">tr_mat</span><span class="p">[</span><span class="n">tr_mat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">probs</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">tr_mat</span> <span class="o">=</span> <span class="n">tr_mat</span><span class="p">[</span><span class="n">indx</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="n">tr_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">tr_mat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tr_mat</span> <span class="o">=</span>\
+                    <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">num_blocks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">))</span> <span class="o">+</span>\
+                    <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">probs</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">):</span>
+                    <span class="c1"># ascending</span>
+                    <span class="n">tr_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">ind</span><span class="p">,</span> <span class="p">(</span><span class="n">ind</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">probs</span>
+                    <span class="c1"># repeating block</span>
+                    <span class="n">tr_mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">ind</span><span class="p">,</span> <span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">probs</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_blocks</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                        <span class="n">tr_mat</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">ind</span><span class="p">,</span> <span class="n">ind</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">probs</span>  <span class="c1"># descending block</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tr_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">probs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">scaled_tr_mat</span> <span class="o">=</span> <span class="n">tr_mat</span><span class="p">[:,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">]</span>
+            <span class="n">scaled_tr_mat</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">scaled_tr_mat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">tr_mat</span> <span class="o">=</span> <span class="n">scaled_tr_mat</span>
+        <span class="n">tr_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">tr_mat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_blocks</span> <span class="o">=</span> <span class="n">tr_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curr_block</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_blocks</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blk_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">indx</span><span class="p">]))</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rand_blcks</span>\
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_block</span>
+        <span class="k">return</span> <span class="n">tr_mat</span>
+
+<div class="viewcode-block" id="TrialHistory.step"><a class="viewcode-back" href="../../../wrappers.html#neurogym.wrappers.trial_hist.TrialHistory.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+        <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;curr_block&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blk_id</span>
+        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Manuel Molano, Guangyu Robert Yang, &amp; contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

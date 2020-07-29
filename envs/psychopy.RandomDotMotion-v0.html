@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>psychopy.RandomDotMotion-v0 &mdash; neurogym  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        <script src="../_static/katex_autorenderer.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/katex-math.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="psychopy.VisualSearch-v0" href="psychopy.VisualSearch-v0.html" />
+    <link rel="prev" title="SingleContextDecisionMaking-v0" href="SingleContextDecisionMaking-v0.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> neurogym
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo.html">Exploring NeuroGym tasks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../example_neurogym_rl.html">Reinforcement learning example with stable-baselines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_neurogym_keras.html">Keras example of supervised learning a NeuroGym task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_neurogym_pytorch.html">Pytorch supervised learning of perceptual decision making task</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Environments</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Environments</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="AngleReproduction-v0.html">AngleReproduction-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AntiReach-v0.html">AntiReach-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bandit-v0.html">Bandit-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CVLearning-v0.html">CVLearning-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ChangingEnvironment-v0.html">ChangingEnvironment-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ContextDecisionMaking-v0.html">ContextDecisionMaking-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DawTwoStep-v0.html">DawTwoStep-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DelayComparison-v0.html">DelayComparison-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DelayMatchCategory-v0.html">DelayMatchCategory-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DelayMatchSample-v0.html">DelayMatchSample-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DelayMatchSampleDistractor1D-v0.html">DelayMatchSampleDistractor1D-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DelayPairedAssociation-v0.html">DelayPairedAssociation-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Detection-v0.html">Detection-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DualDelayMatchSample-v0.html">DualDelayMatchSample-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EconomicDecisionMaking-v0.html">EconomicDecisionMaking-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GoNogo-v0.html">GoNogo-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HierarchicalReasoning-v0.html">HierarchicalReasoning-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="IntervalDiscrimination-v0.html">IntervalDiscrimination-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MatchingPenny-v0.html">MatchingPenny-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MotorTiming-v0.html">MotorTiming-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MultiSensoryIntegration-v0.html">MultiSensoryIntegration-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NAltPerceptualDecisionMaking-v0.html">NAltPerceptualDecisionMaking-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OneTwoThreeGo-v0.html">OneTwoThreeGo-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PerceptualDecisionMaking-v0.html">PerceptualDecisionMaking-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PerceptualDecisionMakingDelayResponse-v0.html">PerceptualDecisionMakingDelayResponse-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PostDecisionWager-v0.html">PostDecisionWager-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProbabilisticReasoning-v0.html">ProbabilisticReasoning-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PulseDecisionMaking-v0.html">PulseDecisionMaking-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reaching1D-v0.html">Reaching1D-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reaching1DWithSelfDistraction-v0.html">Reaching1DWithSelfDistraction-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ReachingDelayResponse-v0.html">ReachingDelayResponse-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ReadySetGo-v0.html">ReadySetGo-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SingleContextDecisionMaking-v0.html">SingleContextDecisionMaking-v0</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">psychopy.RandomDotMotion-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="psychopy.VisualSearch-v0.html">psychopy.VisualSearch-v0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tags.html">Tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wrappers.html">Wrappers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">neurogym</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Environments</a> &raquo;</li>
+        
+      <li>psychopy.RandomDotMotion-v0</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/envs/psychopy.RandomDotMotion-v0.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="psychopy-randomdotmotion-v0">
+<h1>psychopy.RandomDotMotion-v0<a class="headerlink" href="#psychopy-randomdotmotion-v0" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="neurogym.envs.psychopy.perceptualdecisionmaking.RandomDotMotion">
+<em class="property">class </em><code class="sig-prename descclassname">neurogym.envs.psychopy.perceptualdecisionmaking.</code><code class="sig-name descname">RandomDotMotion</code><span class="sig-paren">(</span><em class="sig-param">dt=16</em>, <em class="sig-param">win_size=(100</em>, <em class="sig-param">100)</em>, <em class="sig-param">rewards=None</em>, <em class="sig-param">timing=None</em>, <em class="sig-param">stim_scale=1.0</em>, <em class="sig-param">dim_ring=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurogym/envs/psychopy/perceptualdecisionmaking.html#RandomDotMotion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.envs.psychopy.perceptualdecisionmaking.RandomDotMotion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-alternative forced choice task in which the subject has to
+integrate two stimuli to decide which one is higher on average.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stim_scale</strong> – Controls the difficulty of the experiment. (def: 1., float)</p></li>
+<li><p><strong>dim_ring</strong> – int, dimension of ring input and output</p></li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>Reference paper</dt><dd><p><a class="reference external" href="https://www.jneurosci.org/content/12/12/4745">The analysis of visual motion: a comparison of         neuronal and psychophysical performance</a></p>
+</dd>
+<dt>Tags</dt><dd><p><a class="reference internal" href="../tags.html#tag-perceptual"><span class="std std-ref">perceptual</span></a>,         <a class="reference internal" href="../tags.html#tag-two-alternative"><span class="std std-ref">two-alternative</span></a>,         <a class="reference internal" href="../tags.html#tag-supervised"><span class="std std-ref">supervised</span></a></p>
+</dd>
+<dt>Sample run</dt><dd>
+    <video width="300" height="300" controls muted  loop>
+    <source src="../_static/psychopy.RandomDotMotion-v0_examplerun.mp4" type="video/mp4">
+    Video
+    </video>
+    </dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="psychopy.VisualSearch-v0.html" class="btn btn-neutral float-right" title="psychopy.VisualSearch-v0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="SingleContextDecisionMaking-v0.html" class="btn btn-neutral float-left" title="SingleContextDecisionMaking-v0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Manuel Molano, Guangyu Robert Yang, &amp; contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

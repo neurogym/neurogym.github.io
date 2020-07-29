@@ -1,0 +1,959 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Exploring NeuroGym tasks &mdash; neurogym  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        <script src="_static/katex_autorenderer.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> neurogym
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example_neurogym_rl.html">Reinforcement learning example with stable-baselines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_neurogym_pytorch.html">Pytorch supervised learning of perceptual decision making task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_neurogym_keras.html">Keras example of supervised learning a NeuroGym task</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Environments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="envs/index.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tags.html">Tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrappers.html">Wrappers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">neurogym</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Exploring NeuroGym tasks</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/demo.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Exploring-NeuroGym-tasks">
+<h1>Exploring NeuroGym tasks<a class="headerlink" href="#Exploring-NeuroGym-tasks" title="Permalink to this headline">¶</a></h1>
+<p>NeuroGym is a comprehensive toolkit that allows training any network model on many established neuroscience tasks using Reinforcement Learning techniques. It includes working memory tasks, value-based decision tasks and context-dependent perceptual categorization tasks.</p>
+<p>In this notebook we first show how to install the relevant toolbox.</p>
+<p>We then show how to access the available tasks and their relevant information.</p>
+<p>Finally we train an LSTM network on the Random Dots Motion task using the A2C algorithm <a class="reference external" href="https://arxiv.org/abs/1602.01783">Mnih et al. 2016</a> implemented in the <a class="reference external" href="https://github.com/hill-a/stable-baselines">stable-baselines</a> toolbox, and plot the results.</p>
+<p>You can easily change the code to train a network on any other available task or using a different algorithm (e.g. ACER, PPO2).</p>
+<div class="section" id="Installation-on-google-colab">
+<h2>Installation on google colab<a class="headerlink" href="#Installation-on-google-colab" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">tensorflow_version</span> 1.x
+<span class="c1"># Install gym</span>
+<span class="o">!</span> pip install gym
+<span class="c1"># Install neurogym</span>
+<span class="o">!</span> git clone https://github.com/gyyang/neurogym.git
+<span class="o">%</span><span class="k">cd</span> neurogym/
+<span class="o">!</span> pip install -e .
+<span class="c1"># Install stable-baselines</span>
+<span class="o">!</span> pip install --upgrade stable-baselines
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+UsageError: Line magic function `%tensorflow_version` not found.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Explore-tasks">
+<h2>Explore tasks<a class="headerlink" href="#Explore-tasks" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">neurogym</span> <span class="k">as</span> <span class="nn">ngym</span>
+<span class="kn">from</span> <span class="nn">neurogym.utils</span> <span class="kn">import</span> <span class="n">info</span><span class="p">,</span> <span class="n">plotting</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">info</span><span class="o">.</span><span class="n">all_tasks</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AngleReproduction-v0
+AntiReach-v0
+Bandit-v0
+CVLearning-v0
+ChangingEnvironment-v0
+ContextDecisionMaking-v0
+DawTwoStep-v0
+DelayComparison-v0
+DelayMatchCategory-v0
+DelayMatchSample-v0
+DelayMatchSampleDistractor1D-v0
+DelayPairedAssociation-v0
+Detection-v0
+DualDelayMatchSample-v0
+EconomicDecisionMaking-v0
+GoNogo-v0
+HierarchicalReasoning-v0
+IntervalDiscrimination-v0
+MatchingPenny-v0
+MotorTiming-v0
+MultiSensoryIntegration-v0
+NAltPerceptualDecisionMaking-v0
+Nothing-v0
+OneTwoThreeGo-v0
+PerceptualDecisionMaking-v0
+PerceptualDecisionMakingDelayResponse-v0
+PostDecisionWager-v0
+ProbabilisticReasoning-v0
+PulseDecisionMaking-v0
+Reaching1D-v0
+Reaching1DWithSelfDistraction-v0
+ReachingDelayResponse-v0
+ReadySetGo-v0
+psychopy.RandomDotMotion-v0
+psychopy.VisualSearch-v0
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Visualize-a-single-task">
+<h2>Visualize a single task<a class="headerlink" href="#Visualize-a-single-task" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">task</span> <span class="o">=</span> <span class="s1">&#39;PerceptualDecisionMaking-v0&#39;</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">task</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_env</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">def_act</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ob_traces</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Fixation cue&#39;</span><span class="p">,</span> <span class="s1">&#39;Stim1&#39;</span><span class="p">,</span> <span class="s1">&#39;Stim2&#39;</span><span class="p">],</span> <span class="n">fig_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">)});</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+findfont: Font family [&#39;arial&#39;] not found. Falling back to DejaVu Sans.
+findfont: Font family [&#39;arial&#39;] not found. Falling back to DejaVu Sans.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+### PerceptualDecisionMaking
+Doc: Two-alternative forced choice task in which the subject has to
+    integrate two stimuli to decide which one is higher on average.
+
+    Args:
+        stim_scale: Controls the difficulty of the experiment. (def: 1., float)
+        sigma: float, input noise level
+        dim_ring: int, dimension of ring input and output
+
+Reference paper
+[The analysis of visual motion: a comparison of neuronal and psychophysical performance](https://www.jneurosci.org/content/12/12/4745)
+
+Period timing (ms)
+fixation : constant 100
+stimulus : constant 2000
+decision : constant 100
+
+Reward structure
+abort : -0.1
+correct : 1.0
+fail : 0.0
+
+Tags: perceptual, two-alternative, supervised.
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/demo_8_2.png" src="_images/demo_8_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Explore-wrappers">
+<h2>Explore wrappers<a class="headerlink" href="#Explore-wrappers" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">info</span><span class="o">.</span><span class="n">all_wrappers</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+CatchTrials-v0
+Combine-v0
+Identity-v0
+MissTrialReward-v0
+Monitor-v0
+Noise-v0
+PassAction-v0
+PassReward-v0
+ReactionTime-v0
+SideBias-v0
+TTLPulse-v0
+TransferLearning-v0
+TrialHistory-v0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">info</span><span class="o">.</span><span class="n">info_wrapper</span><span class="p">(</span><span class="s1">&#39;TrialHistory-v0&#39;</span><span class="p">,</span> <span class="n">show_code</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+### TrialHistory-v0
+
+Logic: Change ground truth probability based on previousoutcome.
+
+Reference paper
+
+[Response outcomes gate the impact of expectations on perceptual decisions](https://www.biorxiv.org/content/10.1101/433409v3)
+
+
+#### Source code ####
+
+class TrialHistory(ngym.TrialWrapper):
+    &#34;&#34;&#34;Change ground truth probability based on previous outcome.
+
+    Args:
+        probs: matrix of probabilities of the current choice conditioned
+            on the previous for each block. (def: None, np.array,
+            num-blocks x num-choices x num-choices)
+        block_dur: Number of trials per block. (def: 200 (int))
+        blk_ch_prob: If not None, specifies the probability of changing block
+            (randomly). (def: None, float)
+    &#34;&#34;&#34;
+    metadata = {
+        &#39;description&#39;: &#39;Change ground truth probability based on previous&#39; +
+        &#39;outcome.&#39;,
+        &#39;paper_link&#39;: &#39;https://www.biorxiv.org/content/10.1101/433409v3&#39;,
+        &#39;paper_name&#39;: &#39;Response outcomes gate the impact of expectations &#39; +
+        &#39;on perceptual decisions&#39;
+    }
+
+    def __init__(self, env, probs=None, block_dur=200,
+                 blk_ch_prob=None):
+        super().__init__(env)
+        try:
+            self.choices = self.task.choices
+        except AttributeError:
+            raise AttributeError(&#39;&#39;&#39;SideBias requires task
+                                 to have attribute choices&#39;&#39;&#39;)
+        self.n_ch = len(self.choices)
+        assert isinstance(self.task, ngym.TrialEnv), &#39;Task has to be TrialEnv&#39;
+        assert probs is not None, &#39;Please provide choices probabilities&#39;
+        if isinstance(probs, float):
+            num_blocks = 2
+            tr_mat =\
+                np.zeros((num_blocks, self.n_ch, self.n_ch)) +\
+                (1-probs)/(self.n_ch-1)
+            for ind in range(self.n_ch-1):
+                tr_mat[0, ind, ind+1] = probs
+                tr_mat[1, ind, ind] = probs
+            tr_mat[0, self.n_ch-1, 0] = probs
+            tr_mat[1, self.n_ch-1, self.n_ch-1] = probs
+            probs = tr_mat
+        assert probs.shape[1] == self.n_ch,\
+            &#39;The number of choices {:d}&#39;.format(probs.shape[1]) +\
+            &#39; inferred from prob mismatchs {:d}&#39;.format(self.n_ch) +\
+            &#39; inferred from choices&#39;
+
+        self.n_block = probs.shape[0]
+        self.curr_block = self.task.rng.choice(range(self.n_block))
+        self.probs = probs
+        self.block_dur = block_dur
+        self.prev_trial = -1
+        self.blk_ch_prob = blk_ch_prob
+        print(self.probs.shape)
+
+    def new_trial(self, **kwargs):
+        # ---------------------------------------------------------------------
+        # Periods
+        # ---------------------------------------------------------------------
+        # change rep. prob. every self.block_dur trials
+        if self.blk_ch_prob is None:
+            if self.task.num_tr % self.block_dur == 0:
+                self.curr_block = (self.curr_block + 1) % self.n_block
+        else:
+            if self.task.rng.random() &lt; self.blk_ch_prob:
+                self.curr_block = (self.curr_block + 1) % self.n_block
+        probs_curr_blk = self.probs[self.curr_block, self.prev_trial, :]
+        ground_truth = self.task.rng.choice(self.choices,
+                                            p=probs_curr_blk)
+        self.prev_trial = np.where(self.choices == ground_truth)[0][0]
+        kwargs.update({&#39;ground_truth&#39;: ground_truth})
+        self.env.new_trial(**kwargs)
+
+
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Train-a-network">
+<h2>Train a network<a class="headerlink" href="#Train-a-network" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">neurogym.wrappers</span> <span class="kn">import</span> <span class="n">trial_hist</span><span class="p">,</span> <span class="n">monitor</span>
+<span class="kn">from</span> <span class="nn">stable_baselines.common.policies</span> <span class="kn">import</span> <span class="n">LstmPolicy</span>
+<span class="kn">from</span> <span class="nn">stable_baselines.common.vec_env</span> <span class="kn">import</span> <span class="n">DummyVecEnv</span>
+<span class="kn">from</span> <span class="nn">stable_baselines</span> <span class="kn">import</span> <span class="n">A2C</span>  <span class="c1"># ACER, PPO2</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
+<span class="c1"># task paremters</span>
+<span class="n">task</span> <span class="o">=</span> <span class="s1">&#39;PerceptualDecisionMaking-v0&#39;</span>
+<span class="n">timing</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span>
+          <span class="s1">&#39;stimulus&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="mi">700</span><span class="p">),</span>
+          <span class="s1">&#39;decision&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)}</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dt&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;timing&#39;</span><span class="p">:</span> <span class="n">timing</span><span class="p">,</span> <span class="s1">&#39;stim_scale&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="c1"># wrapper parameters</span>
+<span class="n">n_ch</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">num_blocks</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">block_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">p</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">]])</span>  <span class="c1"># repeating block</span>
+<span class="n">block_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">],</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">]])</span>  <span class="c1"># alternating block</span>
+<span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">num_blocks</span><span class="p">,</span> <span class="n">n_ch</span><span class="p">,</span> <span class="n">n_ch</span><span class="p">))</span>
+<span class="n">probs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">block_1</span>
+<span class="n">probs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">block_2</span>
+
+<span class="n">block_dur</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1"># build task</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="c1"># Apply the wrapper</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">trial_hist</span><span class="o">.</span><span class="n">TrialHistory</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">probs</span><span class="p">,</span> <span class="n">block_dur</span><span class="o">=</span><span class="n">block_dur</span><span class="p">)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">monitor</span><span class="o">.</span><span class="n">Monitor</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;content/tests/&#39;</span><span class="p">,</span> <span class="n">sv_per</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sv_fig</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_stps_sv_fig</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># the env is now wrapped automatically when passing it to the constructor</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">DummyVecEnv</span><span class="p">([</span><span class="k">lambda</span><span class="p">:</span> <span class="n">env</span><span class="p">])</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">A2C</span><span class="p">(</span><span class="n">LstmPolicy</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">policy_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;feature_extraction&#39;</span><span class="p">:</span><span class="s2">&quot;mlp&quot;</span><span class="p">})</span>
+<span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="mi">500000</span><span class="p">,</span> <span class="n">log_interval</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+(2, 2, 2)
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/common/tf_util.py:191: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/common/tf_util.py:200: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/common/policies.py:116: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/common/input.py:25: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/common/policies.py:420: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/tensorflow_core/python/layers/core.py:332: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/common/tf_layers.py:123: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/common/distributions.py:326: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/common/distributions.py:327: The name tf.log is deprecated. Please use tf.math.log instead.
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: <span class="ansi-yellow-fg">WARN: Box bound precision lowered by casting to float32</span>
+  warnings.warn(colorize(&#39;%s: %s&#39;%(&#39;WARN&#39;, msg % args), &#39;yellow&#39;))
+/home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/tensorflow_core/python/ops/variable_scope.py:452: DeprecationWarning: Using or importing the ABCs from &#39;collections&#39; instead of from &#39;collections.abc&#39; is deprecated since Python 3.3,and in 3.9 it will stop working
+  shape is not None and isinstance(shape, collections_lib.Sequence) and
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/a2c/a2c.py:158: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/common/tf_util.py:449: The name tf.get_collection is deprecated. Please use tf.compat.v1.get_collection instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/common/tf_util.py:449: The name tf.GraphKeys is deprecated. Please use tf.compat.v1.GraphKeys instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/tensorflow_core/python/ops/clip_ops.py:301: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/a2c/a2c.py:182: The name tf.train.RMSPropOptimizer is deprecated. Please use tf.compat.v1.train.RMSPropOptimizer instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/tensorflow_core/python/training/rmsprop.py:119: calling Ones.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/a2c/a2c.py:192: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/jeremy/anaconda3/envs/neurogym/lib/python3.7/site-packages/stable_baselines/a2c/a2c.py:194: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+---------------------------------
+| explained_variance | 0.178    |
+| fps                | 4        |
+| nupdates           | 1        |
+| policy_entropy     | 1.1      |
+| total_timesteps    | 5        |
+| value_loss         | 0.00225  |
+---------------------------------
+--------------------
+Number of steps:  10000.0
+Average reward:  0.7333500000000001
+--------------------
+--------------------
+Number of steps:  20000.0
+Average reward:  0.83236
+--------------------
+--------------------
+Number of steps:  30000.0
+Average reward:  0.8452700000000001
+--------------------
+--------------------
+Number of steps:  40000.0
+Average reward:  0.8505
+--------------------
+---------------------------------
+| explained_variance | 0.86     |
+| fps                | 21       |
+| nupdates           | 100000   |
+| policy_entropy     | 0.286    |
+| total_timesteps    | 500000   |
+| value_loss         | 0.0434   |
+---------------------------------
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Visualize-results">
+<h2>Visualize results<a class="headerlink" href="#Visualize-results" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Create task</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="c1"># Apply the wrapper</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">trial_hist</span><span class="o">.</span><span class="n">TrialHistory</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="n">probs</span><span class="p">,</span> <span class="n">block_dur</span><span class="o">=</span><span class="n">block_dur</span><span class="p">)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">DummyVecEnv</span><span class="p">([</span><span class="k">lambda</span><span class="p">:</span> <span class="n">env</span><span class="p">])</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_env</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">def_act</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ob_traces</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Fixation cue&#39;</span><span class="p">,</span> <span class="s1">&#39;Stim1&#39;</span><span class="p">,</span> <span class="s1">&#39;Stim2&#39;</span><span class="p">],</span> <span class="n">fig_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">)},</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(2, 2, 2)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-8-bcba563168d4&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> env <span class="ansi-blue-fg">=</span> trial_hist<span class="ansi-blue-fg">.</span>TrialHistory<span class="ansi-blue-fg">(</span>env<span class="ansi-blue-fg">,</span> probs<span class="ansi-blue-fg">=</span>probs<span class="ansi-blue-fg">,</span> block_dur<span class="ansi-blue-fg">=</span>block_dur<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span> env <span class="ansi-blue-fg">=</span> DummyVecEnv<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-green-fg">lambda</span><span class="ansi-blue-fg">:</span> env<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 8</span><span class="ansi-red-fg"> </span>plotting<span class="ansi-blue-fg">.</span>plot_env<span class="ansi-blue-fg">(</span>env<span class="ansi-blue-fg">,</span> num_steps<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">50</span><span class="ansi-blue-fg">,</span> def_act<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">,</span> ob_traces<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;Fixation cue&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Stim1&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Stim2&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> fig_kwargs<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#39;figsize&#39;</span><span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">12</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">12</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> model<span class="ansi-blue-fg">=</span>model<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">;</span>
+
+<span class="ansi-green-fg">~/Documents/Postdoc/Projects/Neurogym/neurogym/neurogym/utils/plotting.py</span> in <span class="ansi-cyan-fg">plot_env</span><span class="ansi-blue-fg">(env, num_steps, num_trials, def_act, model, name, legend, ob_traces, fig_kwargs, fname)</span>
+<span class="ansi-green-intense-fg ansi-bold">     53</span>         legend<span class="ansi-blue-fg">=</span>legend<span class="ansi-blue-fg">,</span> performance<span class="ansi-blue-fg">=</span>data<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;perf&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     54</span>         states<span class="ansi-blue-fg">=</span>data<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;states&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">=</span>name<span class="ansi-blue-fg">,</span> ob_traces<span class="ansi-blue-fg">=</span>ob_traces<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">---&gt; 55</span><span class="ansi-red-fg">         </span>fig_kwargs<span class="ansi-blue-fg">=</span>fig_kwargs<span class="ansi-blue-fg">,</span> env<span class="ansi-blue-fg">=</span>env<span class="ansi-blue-fg">,</span> fname<span class="ansi-blue-fg">=</span>fname
+<span class="ansi-green-intense-fg ansi-bold">     56</span>     )
+<span class="ansi-green-intense-fg ansi-bold">     57</span>
+
+<span class="ansi-green-fg">~/Documents/Postdoc/Projects/Neurogym/neurogym/neurogym/utils/plotting.py</span> in <span class="ansi-cyan-fg">fig_</span><span class="ansi-blue-fg">(ob, actions, gt, rewards, performance, states, legend, ob_traces, name, fname, fig_kwargs, env)</span>
+<span class="ansi-green-intense-fg ansi-bold">    168</span>             performance<span class="ansi-blue-fg">=</span>performance<span class="ansi-blue-fg">,</span> states<span class="ansi-blue-fg">=</span>states<span class="ansi-blue-fg">,</span> legend<span class="ansi-blue-fg">=</span>legend<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    169</span>             ob_traces<span class="ansi-blue-fg">=</span>ob_traces<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">=</span>name<span class="ansi-blue-fg">,</span> fname<span class="ansi-blue-fg">=</span>fname<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">--&gt; 170</span><span class="ansi-red-fg">             </span>fig_kwargs<span class="ansi-blue-fg">=</span>fig_kwargs<span class="ansi-blue-fg">,</span> env<span class="ansi-blue-fg">=</span>env
+<span class="ansi-green-intense-fg ansi-bold">    171</span>         )
+<span class="ansi-green-intense-fg ansi-bold">    172</span>     <span class="ansi-green-fg">elif</span> len<span class="ansi-blue-fg">(</span>ob<span class="ansi-blue-fg">.</span>shape<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">==</span> <span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/Documents/Postdoc/Projects/Neurogym/neurogym/neurogym/utils/plotting.py</span> in <span class="ansi-cyan-fg">plot_env_1dbox</span><span class="ansi-blue-fg">(ob, actions, gt, rewards, performance, states, legend, ob_traces, name, fname, fig_kwargs, env)</span>
+<span class="ansi-green-intense-fg ansi-bold">    251</span>     <span class="ansi-green-fg">if</span> legend<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    252</span>         ax<span class="ansi-blue-fg">.</span>legend<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 253</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">if</span> env <span class="ansi-green-fg">and</span> env<span class="ansi-blue-fg">.</span>act_dict<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    254</span>         <span class="ansi-red-fg"># Plot environment annotation</span>
+<span class="ansi-green-intense-fg ansi-bold">    255</span>         yticks <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
+
+<span class="ansi-red-fg">AttributeError</span>: &#39;DummyVecEnv&#39; object has no attribute &#39;act_dict&#39;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/demo_15_2.png" src="_images/demo_15_2.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Manuel Molano, Guangyu Robert Yang, &amp; contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
