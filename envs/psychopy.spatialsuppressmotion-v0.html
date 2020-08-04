@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AntiReach-v0 &mdash; neurogym  documentation</title>
+  <title>psychopy.spatialsuppressmotion-v0 &mdash; neurogym  documentation</title>
   
 
   
@@ -41,8 +41,8 @@
   <link rel="stylesheet" href="../_static/katex-math.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Bandit-v0" href="Bandit-v0.html" />
-    <link rel="prev" title="AngleReproduction-v0" href="AngleReproduction-v0.html" /> 
+    <link rel="next" title="Tags" href="../tags.html" />
+    <link rel="prev" title="psychopy.VisualSearch-v0" href="psychopy.VisualSearch-v0.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -100,7 +100,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Environments</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="AngleReproduction-v0.html">AngleReproduction-v0</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">AntiReach-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AntiReach-v0.html">AntiReach-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Bandit-v0.html">Bandit-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CVLearning-v0.html">CVLearning-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ChangingEnvironment-v0.html">ChangingEnvironment-v0</a></li>
@@ -134,7 +134,7 @@
 <li class="toctree-l2"><a class="reference internal" href="SingleContextDecisionMaking-v0.html">SingleContextDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="psychopy.RandomDotMotion-v0.html">psychopy.RandomDotMotion-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="psychopy.VisualSearch-v0.html">psychopy.VisualSearch-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="psychopy.spatialsuppressmotion-v0.html">psychopy.spatialsuppressmotion-v0</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">psychopy.spatialsuppressmotion-v0</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tags.html">Tags</a></li>
@@ -186,13 +186,13 @@
         
           <li><a href="index.html">Environments</a> &raquo;</li>
         
-      <li>AntiReach-v0</li>
+      <li>psychopy.spatialsuppressmotion-v0</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/envs/AntiReach-v0.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/envs/psychopy.spatialsuppressmotion-v0.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -229,22 +229,61 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="antireach-v0">
-<h1>AntiReach-v0<a class="headerlink" href="#antireach-v0" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="psychopy-spatialsuppressmotion-v0">
+<h1>psychopy.spatialsuppressmotion-v0<a class="headerlink" href="#psychopy-spatialsuppressmotion-v0" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="neurogym.envs.antireach.AntiReach">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.envs.antireach.</code><code class="sig-name descname">AntiReach</code><span class="sig-paren">(</span><em class="sig-param">dt=100</em>, <em class="sig-param">anti=True</em>, <em class="sig-param">rewards=None</em>, <em class="sig-param">timing=None</em>, <em class="sig-param">dim_ring=32</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurogym/envs/antireach.html#AntiReach"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.envs.antireach.AntiReach" title="Permalink to this definition">¶</a></dt>
-<dd><p>Anti-response task.</p>
-<p>The agent has to move in the direction opposite to the one indicated
-by the observation.</p>
-<dl>
-<dt>Reference paper</dt><dd><p><a class="reference external" href="https://www.nature.com/articles/nrn1345">Look away: the anti-saccade task and         the voluntary control of eye movement</a></p>
-</dd>
-<dt>Tags</dt><dd><p><a class="reference internal" href="../tags.html#tag-perceptual"><span class="std std-ref">perceptual</span></a>,         <a class="reference internal" href="../tags.html#tag-steps-action-space"><span class="std std-ref">steps action space</span></a></p>
-</dd>
-<dt>Sample run</dt><dd><a class="reference internal image-reference" href="../_images/AntiReach-v0_examplerun.png"><img alt="../_images/AntiReach-v0_examplerun.png" src="../_images/AntiReach-v0_examplerun.png" style="width: 600px;" /></a>
+<dt id="neurogym.envs.psychopy.spatialsuppressmotion.SpatialSuppressMotion">
+<em class="property">class </em><code class="sig-prename descclassname">neurogym.envs.psychopy.spatialsuppressmotion.</code><code class="sig-name descname">SpatialSuppressMotion</code><span class="sig-paren">(</span><em class="sig-param">dt=8.3</em>, <em class="sig-param">win_kwargs={'size': (100</em>, <em class="sig-param">100)}</em>, <em class="sig-param">timing={'stimulus': 300}</em>, <em class="sig-param">rewards=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurogym/envs/psychopy/spatialsuppressmotion.html#SpatialSuppressMotion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.envs.psychopy.spatialsuppressmotion.SpatialSuppressMotion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spatial suppression motion task. This task is useful to study center-surround interaction in monkey MT and human psychophysical performance in motion perception.</p>
+<p>Tha task is derived from (Tadin et al. Nature, 2003). In this task, there is no fixation or decision stage. We only present a stimulus and a subject needs to perform a 4-AFC motion direction judgement. The ground-truth is the probabilities for choosing the four directions at a given time point. The probabilities depend on stimulus contrast and size and the probabilities are derived from emprically measured human psychophysical performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>&lt;dt&gt;</strong> – millisecs per image frame, default: 8.3 (given 120HZ monitor)</p></li>
+<li><p><strong>&lt;win_size&gt;</strong> – size per image frame</p></li>
+<li><p><strong>&lt;timing&gt;</strong> – millisecs, stimulus duration, default: 8.3 * 36 frames ~ 300 ms.
+This is the longest duration we need (i.e., probability reach ceilling)</p></li>
+</ul>
 </dd>
 </dl>
+<p>Note that please input default seq_len = 36 frames when creating dataset object.</p>
+<dl>
+<dt>Reference paper</dt><dd><p><a class="reference external" href="https://www.nature.com/articles/nature01800">Perceptual consequences of centre–surround antagonism in visual motion processing</a></p>
+</dd>
+<dt>Tags</dt><dd><p><a class="reference internal" href="../tags.html#tag-perceptual"><span class="std std-ref">perceptual</span></a>,         <span class="xref std std-ref">tag-plaid</span>,         <span class="xref std std-ref">tag-motion</span>,         <span class="xref std std-ref">tag-center-surround</span></p>
+</dd>
+<dt>Sample run</dt><dd>
+    <video width="300" height="300" controls muted  loop>
+    <source src="../_static/psychopy.spatialsuppressmotion-v0_examplerun.mp4" type="video/mp4">
+    Video
+    </video>
+    </dd>
+</dl>
+<dl class="method">
+<dt id="neurogym.envs.psychopy.spatialsuppressmotion.SpatialSuppressMotion.envelope">
+<em class="property">static </em><code class="sig-name descname">envelope</code><span class="sig-paren">(</span><em class="sig-param">time_sigma</em>, <em class="sig-param">frame_rate=120</em>, <em class="sig-param">cut_off=True</em>, <em class="sig-param">amplitude=128</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurogym/envs/psychopy/spatialsuppressmotion.html#SpatialSuppressMotion.envelope"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.envs.psychopy.spatialsuppressmotion.SpatialSuppressMotion.envelope" title="Permalink to this definition">¶</a></dt>
+<dd><p>envelope(time_sigma, frame_rate=120, cut_off=True):</p>
+<p>Create a temporal profile and mv_length to motion stimulus in the spatial suppression task. This function is modified fron Duje Tadin’s code.</p>
+<p>Not critical, we can use a square temporal profile</p>
+<dl class="simple">
+<dt>Arg:</dt><dd><p>&lt;time_sigma&gt;: in secs, sigma of temporal envelope
+&lt;frame_rate&gt;: int, hz, monitor frame rate
+&lt;cut_off&gt;: default: True. Whether to cut
+&lt;amplitude&gt;: int, 128.</p>
+</dd>
+</dl>
+<p>We return the tempora modulation &lt;profile&gt; and an int indicating &lt;mv_length&gt;.</p>
+<p>This function is adoped from Duje Tadin. Some variables here are not clear.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="neurogym.envs.psychopy.spatialsuppressmotion.SpatialSuppressMotion.getgroundtruth">
+<code class="sig-name descname">getgroundtruth</code><span class="sig-paren">(</span><em class="sig-param">trial</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurogym/envs/psychopy/spatialsuppressmotion.html#SpatialSuppressMotion.getgroundtruth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.envs.psychopy.spatialsuppressmotion.SpatialSuppressMotion.getgroundtruth" title="Permalink to this definition">¶</a></dt>
+<dd><p>The utility function to obtain ground truth probabilities for four direction</p>
+<p>Input trial is a dict, contains fields &lt;duration&gt;, &lt;contrast&gt;, &lt;diameter&gt;, and &lt;direction&gt;.</p>
+<p>We output a (4,) tuple indicate the probabilities to perceive left/right/up/down direction. This label comes from emprically measured human performance</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -257,10 +296,10 @@ by the observation.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Bandit-v0.html" class="btn btn-neutral float-right" title="Bandit-v0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../tags.html" class="btn btn-neutral float-right" title="Tags" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="AngleReproduction-v0.html" class="btn btn-neutral float-left" title="AngleReproduction-v0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="psychopy.VisualSearch-v0.html" class="btn btn-neutral float-left" title="psychopy.VisualSearch-v0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
