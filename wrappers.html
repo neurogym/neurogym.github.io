@@ -108,6 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#reactiontime-v0">ReactionTime-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sidebias-v0">SideBias-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trialhistory-v0">TrialHistory-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trialhistoryev-v0">TrialHistoryEv-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#misstrialreward-v0">MissTrialReward-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ttlpulse-v0">TTLPulse-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#combine-v0">Combine-v0</a></li>
@@ -527,6 +528,71 @@ the subset corresponding to the current number of choices</p>
 </dd></dl>
 
 </div>
+<div class="section" id="trialhistoryev-v0">
+<h2>TrialHistoryEv-v0<a class="headerlink" href="#trialhistoryev-v0" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution">
+<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.trial_hist_ev.</code><code class="sig-name descname">TrialHistoryEvolution</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">probs=None</em>, <em class="sig-param">ctx_dur=200</em>, <em class="sig-param">num_contexts=3</em>, <em class="sig-param">fix_2AFC=False</em>, <em class="sig-param">death_prob=0.0001</em>, <em class="sig-param">ctx_ch_prob=None</em>, <em class="sig-param">balanced_probs=False</em>, <em class="sig-param">predef_tr_mats=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/trial_hist_ev.html#TrialHistoryEvolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>This wrapper imposes specific probability transition matrices that are
+characterized by probs (the probability of the most likely next choice).
+The number of transition matrices is specified by num_contexts. The
+transition matrices are reset with a probability specified by death_prob.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env</strong> (<em>neurogym.env</em>) – Environment that will be wrapped</p></li>
+<li><p><strong>probs</strong> (<em>float</em><em>, </em><em>optional</em>) – The probability of the the most likely next choice. The default is None.</p></li>
+<li><p><strong>ctx_dur</strong> (<em>int</em><em>, </em><em>optional</em>) – Duration of the contexts (if ctx_ch_prob is None). Default is 200 (trials).</p></li>
+<li><p><strong>num_contexts</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of contexts experienced by each individual. The default is 3.</p></li>
+<li><p><strong>death_prob</strong> (<em>float</em><em>, </em><em>optional</em>) – Probability of death by each individual. The default is 0.0001.</p></li>
+<li><p><strong>ctx_ch_prob</strong> (<em>float</em><em>, </em><em>optional</em>) – Probability of context change. The default is None.</p></li>
+<li><p><strong>balanced_probs</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Indicates whether transtion matrices are balanced. The default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>AttributeError</strong> – DESCRIPTION.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>wrapped environment</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/trial_hist_ev.html#TrialHistoryEvolution.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run one timestep of the environment’s dynamics. When end of
+episode is reached, you are responsible for calling <cite>reset()</cite>
+to reset this environment’s state.</p>
+<p>Accepts an action and returns a tuple (observation, reward, done, info).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>action</strong> (<em>object</em>) – an action provided by the agent</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>agent’s observation of the current environment
+reward (float) : amount of reward returned after previous action
+done (bool): whether the episode has ended, in which case further step() calls will return undefined results
+info (dict): contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>observation (object)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution.trans_probs">
+<em class="property">property </em><code class="sig-name descname">trans_probs</code><a class="headerlink" href="#neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution.trans_probs" title="Permalink to this definition">¶</a></dt>
+<dd><p>if prob is float it creates the transition matrix
+if prob is already a matrix it normalizes the probabilities and extracts
+the subset corresponding to the current number of choices</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="misstrialreward-v0">
 <h2>MissTrialReward-v0<a class="headerlink" href="#misstrialreward-v0" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -630,7 +696,7 @@ gt/reward to use in the sharing-action-space scenario.
 <h2>Variable_nch-v0<a class="headerlink" href="#variable-nch-v0" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="neurogym.wrappers.variable_nch.Variable_nch">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.variable_nch.</code><code class="sig-name descname">Variable_nch</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">block_nch=100</em>, <em class="sig-param">blocks_probs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/variable_nch.html#Variable_nch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.variable_nch.Variable_nch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.variable_nch.</code><code class="sig-name descname">Variable_nch</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">block_nch=100</em>, <em class="sig-param">blocks_probs=None</em>, <em class="sig-param">sorted_ch=True</em>, <em class="sig-param">prob_12=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/variable_nch.html#Variable_nch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.variable_nch.Variable_nch" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="neurogym.wrappers.variable_nch.Variable_nch.step">
 <code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/variable_nch.html#Variable_nch.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.variable_nch.Variable_nch.step" title="Permalink to this definition">¶</a></dt>
