@@ -100,6 +100,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../tags.html">Tags</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../wrappers.html">Wrappers</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
+</ul>
 
             
           
@@ -173,11 +177,11 @@
 
 <span class="kn">import</span> <span class="nn">neurogym</span> <span class="k">as</span> <span class="nn">ngym</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">neurogym.core</span> <span class="kn">import</span> <span class="n">TrialWrapperV2</span>
+<span class="kn">from</span> <span class="nn">neurogym.core</span> <span class="kn">import</span> <span class="n">TrialWrapper</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 
 
-<div class="viewcode-block" id="Variable_nch"><a class="viewcode-back" href="../../../wrappers.html#neurogym.wrappers.variable_nch.Variable_nch">[docs]</a><span class="k">class</span> <span class="nc">Variable_nch</span><span class="p">(</span><span class="n">TrialWrapperV2</span><span class="p">):</span>
+<div class="viewcode-block" id="Variable_nch"><a class="viewcode-back" href="../../../wrappers.html#neurogym.wrappers.variable_nch.Variable_nch">[docs]</a><span class="k">class</span> <span class="nc">Variable_nch</span><span class="p">(</span><span class="n">TrialWrapper</span><span class="p">):</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Change number of active choices every &#39;</span> <span class="o">+</span>
         <span class="s1">&#39;block_nch trials. Always less or equal than original number.&#39;</span><span class="p">,</span>

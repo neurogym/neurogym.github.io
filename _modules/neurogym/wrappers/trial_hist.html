@@ -100,6 +100,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../tags.html">Tags</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../wrappers.html">Wrappers</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
+</ul>
 
             
           
@@ -163,11 +167,11 @@
             
   <h1>Source code for neurogym.wrappers.trial_hist</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">neurogym</span> <span class="k">as</span> <span class="nn">ngym</span>
-<span class="kn">from</span> <span class="nn">neurogym.core</span> <span class="kn">import</span> <span class="n">TrialWrapperV2</span>
+<span class="kn">from</span> <span class="nn">neurogym.core</span> <span class="kn">import</span> <span class="n">TrialWrapper</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="TrialHistory"><a class="viewcode-back" href="../../../wrappers.html#neurogym.wrappers.trial_hist.TrialHistory">[docs]</a><span class="k">class</span> <span class="nc">TrialHistory</span><span class="p">(</span><span class="n">TrialWrapperV2</span><span class="p">):</span>
+<div class="viewcode-block" id="TrialHistory"><a class="viewcode-back" href="../../../wrappers.html#neurogym.wrappers.trial_hist.TrialHistory">[docs]</a><span class="k">class</span> <span class="nc">TrialHistory</span><span class="p">(</span><span class="n">TrialWrapper</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Change ground truth probability based on previous outcome.</span>
 
 <span class="sd">    Args:</span>
