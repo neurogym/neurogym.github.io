@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -175,8 +179,17 @@
 
 
 <span class="c1"># TODO: This is not finished yet. Need to compare with original paper</span>
+<span class="c1"># TODO: In this current implementation, the two stimuli always point to the</span>
+<span class="c1">#  same direction, check original</span>
 <div class="viewcode-block" id="MultiSensoryIntegration"><a class="viewcode-back" href="../../../envs/MultiSensoryIntegration-v0.html#neurogym.envs.multisensory.MultiSensoryIntegration">[docs]</a><span class="k">class</span> <span class="nc">MultiSensoryIntegration</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Multi-sensory integration.&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Multi-sensory integration.</span>
+
+<span class="sd">    Two stimuli are shown in two input modalities. Each stimulus points to</span>
+<span class="sd">    one of the possible responses with a certain strength (coherence). The</span>
+<span class="sd">    correct choice is the response with the highest summed strength from</span>
+<span class="sd">    both stimuli. The agent is therefore encouraged to integrate information</span>
+<span class="sd">    from both modalities equally.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
@@ -201,10 +214,9 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">timing</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
-            <span class="c1"># &#39;target&#39;: 350,  # TODO: not implemented</span>
             <span class="s1">&#39;stimulus&#39;</span><span class="p">:</span> <span class="mi">750</span><span class="p">,</span>
-            <span class="c1"># &#39;delay&#39;: ngym.random.TruncExp(600, 300, 3000, rng=self.rng),</span>
-            <span class="s1">&#39;decision&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>  <span class="c1"># XXX: not specified</span>
+            <span class="s1">&#39;decision&#39;</span><span class="p">:</span> <span class="mi">100</span>
+        <span class="p">}</span>
         <span class="k">if</span> <span class="n">timing</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">timing</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">abort</span> <span class="o">=</span> <span class="kc">False</span>
@@ -254,7 +266,7 @@
         <span class="k">return</span> <span class="n">trial</span>
 
     <span class="k">def</span> <span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
-        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
+        <span class="n">ob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
         <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_now</span>
 
         <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">False</span>
@@ -270,7 +282,7 @@
                     <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">]</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">performance</span> <span class="o">=</span> <span class="mi">1</span>
 
-        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
+        <span class="k">return</span> <span class="n">ob</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
 </pre></div>
 
            </div>

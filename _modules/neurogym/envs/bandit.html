@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -181,69 +185,55 @@
 <div class="viewcode-block" id="Bandit"><a class="viewcode-back" href="../../../envs/Bandit-v0.html#neurogym.envs.bandit.Bandit">[docs]</a><span class="k">class</span> <span class="nc">Bandit</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Multi-arm bandit task.</span>
 
-<span class="sd">    The agent has to select between N actions with different reward</span>
-<span class="sd">    probabilities.</span>
+<span class="sd">    On each trial, the agent is presented with multiple choices. Each</span>
+<span class="sd">    option produces a reward of a certain magnitude given a certain probability.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n: int, the number of choices (arms)</span>
+<span class="sd">        p: tuple of length n, describes the probability of each arm</span>
+<span class="sd">            leading to reward</span>
+<span class="sd">        rewards: tuple of length n, describe the reward magnitude of each option when rewarded</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.nature.com/articles/s41593-018-0147-8&#39;</span><span class="p">,</span>
         <span class="s1">&#39;paper_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Prefrontal cortex as a meta-reinforcement learning&#39;</span> <span class="o">+</span>
         <span class="s1">&#39; system&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;n-alternative&#39;</span><span class="p">,</span> <span class="s1">&#39;supervised&#39;</span><span class="p">]</span>
+        <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;n-alternative&#39;</span><span class="p">]</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_arm</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="p">(</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">),</span> <span class="n">gt_arm</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                 <span class="n">rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timing</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">),</span> <span class="n">rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timing</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">timing</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Bandit task does not require timing variable.&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Rewards</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;correct&#39;</span><span class="p">:</span> <span class="o">+</span><span class="mf">1.</span><span class="p">}</span>
         <span class="k">if</span> <span class="n">rewards</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span> <span class="o">=</span> <span class="n">rewards</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># 1 for every arm</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_arm</span> <span class="o">=</span> <span class="n">n_arm</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gt_arm</span> <span class="o">=</span> <span class="n">gt_arm</span>
-
-        <span class="c1"># Reward probabilities</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">p_high</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">p_low</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>  <span class="c1"># Reward probabilities</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
                                             <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="n">n_arm</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_new_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="c1"># ---------------------------------------------------------------------</span>
-        <span class="c1"># Trial</span>
-        <span class="c1"># ---------------------------------------------------------------------</span>
-        <span class="n">rew_high_reward_arm</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span>
-                               <span class="bp">self</span><span class="o">.</span><span class="n">p_high</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">]</span>
-        <span class="n">rew_low_reward_arm</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_low</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;correct&#39;</span><span class="p">]</span>
-        <span class="n">trial</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;rew_high_reward_arm&#39;</span><span class="p">:</span> <span class="n">rew_high_reward_arm</span><span class="p">,</span>
-            <span class="s1">&#39;rew_low_reward_arm&#39;</span><span class="p">:</span> <span class="n">rew_low_reward_arm</span><span class="p">,</span>
-            <span class="s1">&#39;high_reward_arm&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_arm</span><span class="p">,</span>
-            <span class="p">}</span>
+        <span class="n">trial</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="s1">&#39;rewards&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">}</span>
         <span class="n">trial</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">ob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_arm</span><span class="p">])</span>
 
         <span class="k">return</span> <span class="n">trial</span>
 
     <span class="k">def</span> <span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
         <span class="n">trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trial</span>
-        <span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt</span><span class="p">}</span>
 
-        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;high_reward_arm&#39;</span><span class="p">]:</span>
-            <span class="n">reward</span> <span class="o">=</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;rew_high_reward_arm&#39;</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">performance</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">reward</span> <span class="o">=</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;rew_low_reward_arm&#39;</span><span class="p">]</span>
+        <span class="n">ob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">][</span><span class="n">action</span><span class="p">])</span> <span class="o">*</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;rewards&#39;</span><span class="p">][</span><span class="n">action</span><span class="p">]</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
 
-        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">info</span></div>
+        <span class="k">return</span> <span class="n">ob</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">info</span></div>
 </pre></div>
 
            </div>

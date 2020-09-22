@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -176,8 +180,11 @@
 
 
 <div class="viewcode-block" id="EconomicDecisionMaking"><a class="viewcode-back" href="../../../envs/EconomicDecisionMaking-v0.html#neurogym.envs.economicdecisionmaking.EconomicDecisionMaking">[docs]</a><span class="k">class</span> <span class="nc">EconomicDecisionMaking</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Agents choose between two stimuli (A and B; where A is preferred)</span>
-<span class="sd">    offered in different amounts.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Economic decision making task.</span>
+
+<span class="sd">    A agent chooses between two options. Each option offers a certain amount of</span>
+<span class="sd">    juice. Its amount is indicated by the stimulus. The two options offer</span>
+<span class="sd">    different types of juice, and the agent prefers one over another.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.nature.com/articles/nature04676&#39;</span><span class="p">,</span>

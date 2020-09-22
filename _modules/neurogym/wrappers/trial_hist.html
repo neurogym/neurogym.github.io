@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -240,6 +244,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">curr_tr_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans_probs</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">curr_block</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_block</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_blocks</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">blk_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_block</span>
 
         <span class="n">probs_curr_blk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_tr_mat</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_block</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prev_trial</span><span class="p">,</span> <span class="p">:]</span>
         <span class="n">ground_truth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">th_choices</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">],</span>

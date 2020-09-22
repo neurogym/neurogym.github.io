@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -168,7 +172,6 @@
   <h1>Source code for neurogym.envs.perceptualdecisionmaking</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;Random dot motion task.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -180,8 +183,14 @@
     <span class="sd">&quot;&quot;&quot;Two-alternative forced choice task in which the subject has to</span>
 <span class="sd">    integrate two stimuli to decide which one is higher on average.</span>
 
+<span class="sd">    A noisy stimulus is shown during the stimulus period. The strength (</span>
+<span class="sd">    coherence) of the stimulus is randomly sampled every trial. Because the</span>
+<span class="sd">    stimulus is noisy, the agent is encouraged to integrate the stimulus</span>
+<span class="sd">    over time.</span>
+
 <span class="sd">    Args:</span>
-<span class="sd">        stim_scale: Controls the difficulty of the experiment. (def: 1., float)</span>
+<span class="sd">        cohs: list of float, coherence levels controlling the difficulty of</span>
+<span class="sd">        the task</span>
 <span class="sd">        sigma: float, input noise level</span>
 <span class="sd">        dim_ring: int, dimension of ring input and output</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -192,11 +201,13 @@
         <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;perceptual&#39;</span><span class="p">,</span> <span class="s1">&#39;two-alternative&#39;</span><span class="p">,</span> <span class="s1">&#39;supervised&#39;</span><span class="p">]</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stim_scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cohs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">dim_ring</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
-        <span class="c1"># The strength of evidence, modulated by stim_scale</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cohs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">12.8</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">,</span> <span class="mf">51.2</span><span class="p">])</span> <span class="o">*</span> <span class="n">stim_scale</span>
+        <span class="k">if</span> <span class="n">cohs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cohs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">12.8</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">,</span> <span class="mf">51.2</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cohs</span> <span class="o">=</span> <span class="n">cohs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>  <span class="c1"># Input noise</span>
 
         <span class="c1"># Rewards</span>

@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="../_static/katex-math.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Detection-v0" href="Detection-v0.html" />
+    <link rel="next" title="DualDelayMatchSample-v0" href="DualDelayMatchSample-v0.html" />
     <link rel="prev" title="DelayMatchSampleDistractor1D-v0" href="DelayMatchSampleDistractor1D-v0.html" /> 
 </head>
 
@@ -59,6 +59,9 @@
             <a href="../index.html" class="icon icon-home"> neurogym
           
 
+          
+            
+            <img src="../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
           
           </a>
 
@@ -99,11 +102,8 @@
 <p class="caption"><span class="caption-text">Environments</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Environments</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="AngleReproduction-v0.html">AngleReproduction-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="AntiReach-v0.html">AntiReach-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Bandit-v0.html">Bandit-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CVLearning-v0.html">CVLearning-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ChangingEnvironment-v0.html">ChangingEnvironment-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ContextDecisionMaking-v0.html">ContextDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DawTwoStep-v0.html">DawTwoStep-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DelayComparison-v0.html">DelayComparison-v0</a></li>
@@ -111,16 +111,13 @@
 <li class="toctree-l2"><a class="reference internal" href="DelayMatchSample-v0.html">DelayMatchSample-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DelayMatchSampleDistractor1D-v0.html">DelayMatchSampleDistractor1D-v0</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">DelayPairedAssociation-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Detection-v0.html">Detection-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DualDelayMatchSample-v0.html">DualDelayMatchSample-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="EconomicDecisionMaking-v0.html">EconomicDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GoNogo-v0.html">GoNogo-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="HierarchicalReasoning-v0.html">HierarchicalReasoning-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="IntervalDiscrimination-v0.html">IntervalDiscrimination-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MatchingPenny-v0.html">MatchingPenny-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="MotorTiming-v0.html">MotorTiming-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="MultiSensoryIntegration-v0.html">MultiSensoryIntegration-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="NAltPerceptualDecisionMaking-v0.html">NAltPerceptualDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="OneTwoThreeGo-v0.html">OneTwoThreeGo-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PerceptualDecisionMaking-v0.html">PerceptualDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PerceptualDecisionMakingDelayResponse-v0.html">PerceptualDecisionMakingDelayResponse-v0</a></li>
@@ -134,7 +131,6 @@
 <li class="toctree-l2"><a class="reference internal" href="SingleContextDecisionMaking-v0.html">SingleContextDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="psychopy.RandomDotMotion-v0.html">psychopy.RandomDotMotion-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="psychopy.VisualSearch-v0.html">psychopy.VisualSearch-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="psychopy.spatialsuppressmotion-v0.html">psychopy.spatialsuppressmotion-v0</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tags.html">Tags</a></li>
@@ -142,6 +138,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -238,8 +235,10 @@
 <dl class="class">
 <dt id="neurogym.envs.delaypairedassociation.DelayPairedAssociation">
 <em class="property">class </em><code class="sig-prename descclassname">neurogym.envs.delaypairedassociation.</code><code class="sig-name descname">DelayPairedAssociation</code><span class="sig-paren">(</span><em class="sig-param">dt=100</em>, <em class="sig-param">rewards=None</em>, <em class="sig-param">timing=None</em>, <em class="sig-param">sigma=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurogym/envs/delaypairedassociation.html#DelayPairedAssociation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.envs.delaypairedassociation.DelayPairedAssociation" title="Permalink to this definition">¶</a></dt>
-<dd><p>A sample is followed by a delay and a test. Agents have to report if
-the pair sample-test is a rewarded pair or not.</p>
+<dd><p>Delayed paired-association task.</p>
+<p>The agent is shown a pair of two stimuli separated by a delay period. For
+half of the stimuli-pairs shown, the agent should choose the Go response.
+The agent is rewarded if it chose the Go response correctly.</p>
 <dl>
 <dt>Reference paper</dt><dd><p><a class="reference external" href="https://elifesciences.org/articles/43191">Active information maintenance in working memory by a sensory cortex</a></p>
 </dd>
@@ -260,7 +259,7 @@ the pair sample-test is a rewarded pair or not.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Detection-v0.html" class="btn btn-neutral float-right" title="Detection-v0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="DualDelayMatchSample-v0.html" class="btn btn-neutral float-right" title="DualDelayMatchSample-v0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="DelayMatchSampleDistractor1D-v0.html" class="btn btn-neutral float-left" title="DelayMatchSampleDistractor1D-v0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

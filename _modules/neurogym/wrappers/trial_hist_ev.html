@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -257,7 +261,7 @@
         <span class="c1"># ---------------------------------------------------------------------</span>
         <span class="c1"># Periods</span>
         <span class="c1"># ---------------------------------------------------------------------</span>
-        <span class="n">block_already_changed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">block_change</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="c1"># Check if n_ch is passed and if it is different from previous value</span>
         <span class="k">if</span> <span class="s1">&#39;sel_chs&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span>\
            <span class="nb">set</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sel_chs&#39;</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_chs</span><span class="p">):</span>
@@ -266,9 +270,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">prev_trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">curr_contexts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contexts</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">curr_tr_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans_probs</span>
-            <span class="n">block_already_changed</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">block_change</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="c1"># change rep. prob. every self.ctx_dur trials</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">block_already_changed</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">block_change</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctx_ch_prob</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">block_change</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">num_tr</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctx_dur</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="k">else</span><span class="p">:</span>
@@ -346,6 +350,64 @@
         <span class="n">info</span><span class="p">[</span><span class="s1">&#39;new_generation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_generation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">new_generation</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span></div></div>
+    
+
+<span class="k">class</span> <span class="nc">VariableMapping</span><span class="p">(</span><span class="n">TrialWrapper</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Change ground truth probability based on previous outcome.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        probs: matrix of probabilities of the current choice conditioned</span>
+<span class="sd">            on the previous. Shape, num-choices x num-choices</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span>  <span class="n">mapp_ch_prob</span><span class="o">=</span><span class="mf">0.003</span><span class="p">,</span> <span class="n">min_mapp_dur</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                 <span class="n">sess_end_prob</span><span class="o">=</span><span class="mf">0.0025</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_ch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">n_ch</span>  <span class="c1"># max num of choices</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stims</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;TrialHistory requires task to &#39;</span>
+                                 <span class="s1">&#39;have attribute choices&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapp_ch_prob</span> <span class="o">=</span> <span class="n">mapp_ch_prob</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_mapp_dur</span> <span class="o">=</span> <span class="n">min_mapp_dur</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sess_end_prob</span> <span class="o">=</span> <span class="n">sess_end_prob</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapp_start</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curr_mapping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_mapping</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapping_id</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_mapping</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">stims</span>
+
+    <span class="k">def</span> <span class="nf">new_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">block_change</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sess_end</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># change of number of stimuli?</span>
+        <span class="k">if</span> <span class="s1">&#39;sel_chs&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sel_chs&#39;</span><span class="p">])</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sel_chs&#39;</span><span class="p">])</span>
+            <span class="n">block_change</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mapp_dur</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">num_tr</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">mapp_start</span>
+            <span class="n">block_change</span> <span class="o">=</span> <span class="n">mapp_dur</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_mapp_dur</span> <span class="ow">and</span>\
+                <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapp_ch_prob</span>
+        <span class="c1"># end of mapping block?</span>
+        <span class="k">if</span> <span class="n">block_change</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">curr_mapping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_mapping</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mapping_id</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_mapping</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mapp_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">num_tr</span>
+        <span class="c1"># end of session?</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">sess_end_prob</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_ch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_n_ch</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sess_end</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="c1"># Choose ground truth and update previous trial info</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;mapping&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_mapping</span><span class="p">,</span> <span class="s1">&#39;stims&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stims</span><span class="p">})</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">new_trial</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+        <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;mapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapping_id</span>
+        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;sess_end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sess_end</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sess_end</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span>
 </pre></div>
 
            </div>

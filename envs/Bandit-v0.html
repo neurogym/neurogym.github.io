@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="../_static/katex-math.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="CVLearning-v0" href="CVLearning-v0.html" />
+    <link rel="next" title="ContextDecisionMaking-v0" href="ContextDecisionMaking-v0.html" />
     <link rel="prev" title="AntiReach-v0" href="AntiReach-v0.html" /> 
 </head>
 
@@ -59,6 +59,9 @@
             <a href="../index.html" class="icon icon-home"> neurogym
           
 
+          
+            
+            <img src="../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
           
           </a>
 
@@ -99,11 +102,8 @@
 <p class="caption"><span class="caption-text">Environments</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Environments</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="AngleReproduction-v0.html">AngleReproduction-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="AntiReach-v0.html">AntiReach-v0</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Bandit-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CVLearning-v0.html">CVLearning-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ChangingEnvironment-v0.html">ChangingEnvironment-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ContextDecisionMaking-v0.html">ContextDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DawTwoStep-v0.html">DawTwoStep-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DelayComparison-v0.html">DelayComparison-v0</a></li>
@@ -111,16 +111,13 @@
 <li class="toctree-l2"><a class="reference internal" href="DelayMatchSample-v0.html">DelayMatchSample-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DelayMatchSampleDistractor1D-v0.html">DelayMatchSampleDistractor1D-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DelayPairedAssociation-v0.html">DelayPairedAssociation-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Detection-v0.html">Detection-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DualDelayMatchSample-v0.html">DualDelayMatchSample-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="EconomicDecisionMaking-v0.html">EconomicDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GoNogo-v0.html">GoNogo-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="HierarchicalReasoning-v0.html">HierarchicalReasoning-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="IntervalDiscrimination-v0.html">IntervalDiscrimination-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MatchingPenny-v0.html">MatchingPenny-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="MotorTiming-v0.html">MotorTiming-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="MultiSensoryIntegration-v0.html">MultiSensoryIntegration-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="NAltPerceptualDecisionMaking-v0.html">NAltPerceptualDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="OneTwoThreeGo-v0.html">OneTwoThreeGo-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PerceptualDecisionMaking-v0.html">PerceptualDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PerceptualDecisionMakingDelayResponse-v0.html">PerceptualDecisionMakingDelayResponse-v0</a></li>
@@ -134,7 +131,6 @@
 <li class="toctree-l2"><a class="reference internal" href="SingleContextDecisionMaking-v0.html">SingleContextDecisionMaking-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="psychopy.RandomDotMotion-v0.html">psychopy.RandomDotMotion-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="psychopy.VisualSearch-v0.html">psychopy.VisualSearch-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="psychopy.spatialsuppressmotion-v0.html">psychopy.spatialsuppressmotion-v0</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tags.html">Tags</a></li>
@@ -142,6 +138,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -237,14 +234,24 @@
 <h1>Bandit-v0<a class="headerlink" href="#bandit-v0" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="neurogym.envs.bandit.Bandit">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.envs.bandit.</code><code class="sig-name descname">Bandit</code><span class="sig-paren">(</span><em class="sig-param">dt=100</em>, <em class="sig-param">n_arm=2</em>, <em class="sig-param">probs=(0.9</em>, <em class="sig-param">0.1)</em>, <em class="sig-param">gt_arm=0</em>, <em class="sig-param">rewards=None</em>, <em class="sig-param">timing=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurogym/envs/bandit.html#Bandit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.envs.bandit.Bandit" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">neurogym.envs.bandit.</code><code class="sig-name descname">Bandit</code><span class="sig-paren">(</span><em class="sig-param">dt=100</em>, <em class="sig-param">n=2</em>, <em class="sig-param">p=(0.5</em>, <em class="sig-param">0.5)</em>, <em class="sig-param">rewards=None</em>, <em class="sig-param">timing=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurogym/envs/bandit.html#Bandit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.envs.bandit.Bandit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multi-arm bandit task.</p>
-<p>The agent has to select between N actions with different reward
-probabilities.</p>
+<p>On each trial, the agent is presented with multiple choices. Each
+option produces a reward of a certain magnitude given a certain probability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> – int, the number of choices (arms)</p></li>
+<li><p><strong>p</strong> – tuple of length n, describes the probability of each arm
+leading to reward</p></li>
+<li><p><strong>rewards</strong> – tuple of length n, describe the reward magnitude of each option when rewarded</p></li>
+</ul>
+</dd>
+</dl>
 <dl>
 <dt>Reference paper</dt><dd><p><a class="reference external" href="https://www.nature.com/articles/s41593-018-0147-8">Prefrontal cortex as a meta-reinforcement learning system</a></p>
 </dd>
-<dt>Tags</dt><dd><p><a class="reference internal" href="../tags.html#tag-n-alternative"><span class="std std-ref">n-alternative</span></a>,         <a class="reference internal" href="../tags.html#tag-supervised"><span class="std std-ref">supervised</span></a></p>
+<dt>Tags</dt><dd><p><a class="reference internal" href="../tags.html#tag-n-alternative"><span class="std std-ref">n-alternative</span></a></p>
 </dd>
 <dt>Sample run</dt><dd><a class="reference internal image-reference" href="../_images/Bandit-v0_examplerun.png"><img alt="../_images/Bandit-v0_examplerun.png" src="../_images/Bandit-v0_examplerun.png" style="width: 600px;" /></a>
 </dd>
@@ -261,7 +268,7 @@ probabilities.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="CVLearning-v0.html" class="btn btn-neutral float-right" title="CVLearning-v0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ContextDecisionMaking-v0.html" class="btn btn-neutral float-right" title="ContextDecisionMaking-v0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="AntiReach-v0.html" class="btn btn-neutral float-left" title="AntiReach-v0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

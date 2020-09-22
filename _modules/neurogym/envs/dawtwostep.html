@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -176,6 +180,7 @@
 <span class="kn">import</span> <span class="nn">neurogym</span> <span class="k">as</span> <span class="nn">ngym</span>
 
 
+<span class="c1"># TODO: Need better description</span>
 <div class="viewcode-block" id="DawTwoStep"><a class="viewcode-back" href="../../../envs/DawTwoStep-v0.html#neurogym.envs.dawtwostep.DawTwoStep">[docs]</a><span class="k">class</span> <span class="nc">DawTwoStep</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Daw Two-step task.</span>
 
@@ -259,48 +264,26 @@
         <span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
         <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="n">obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,))</span>
+        <span class="n">ob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,))</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># at stage 1, if action==fixate, abort</span>
             <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;abort&#39;</span><span class="p">]</span>
                 <span class="n">info</span><span class="p">[</span><span class="s1">&#39;new_trial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">state</span> <span class="o">=</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;transition&#39;</span><span class="p">][</span><span class="n">action</span><span class="p">]</span>
-                <span class="n">obs</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">state</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">ob</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">state</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
                 <span class="n">reward</span> <span class="o">=</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;reward&#39;</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">state</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">performance</span> <span class="o">=</span> <span class="n">action</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ground_truth</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">:</span>
-            <span class="n">obs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">ob</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="k">if</span> <span class="n">action</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;abort&#39;</span><span class="p">]</span>
             <span class="n">info</span><span class="p">[</span><span class="s1">&#39;new_trial&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;t is not 0 or 1&#39;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">info</span></div>
+        <span class="k">return</span> <span class="n">ob</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">info</span></div>
 
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-    <span class="n">num_steps</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
-    <span class="n">env</span> <span class="o">=</span> <span class="n">DawTwoStep</span><span class="p">()</span>
-    <span class="n">env</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">ngym</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">plot_env</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="n">num_steps</span><span class="p">,</span> <span class="n">def_act</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-    <span class="n">rew1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;rewards&#39;</span><span class="p">])</span>
-    <span class="n">obs1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------&#39;</span><span class="p">)</span>
-    <span class="n">env</span> <span class="o">=</span> <span class="n">DawTwoStep</span><span class="p">()</span>
-    <span class="n">env</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">ngym</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">plot_env</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">num_steps</span><span class="o">=</span><span class="n">num_steps</span><span class="p">,</span> <span class="n">def_act</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">rew2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;rewards&#39;</span><span class="p">])</span>
-    <span class="n">obs2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-    <span class="k">assert</span> <span class="p">(</span><span class="n">obs1</span> <span class="o">==</span> <span class="n">obs2</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s1">&#39;observations are different&#39;</span>
-    <span class="k">assert</span> <span class="p">(</span><span class="n">rew1</span> <span class="o">==</span> <span class="n">rew2</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s1">&#39;rewards are different&#39;</span>
 </pre></div>
 
            </div>

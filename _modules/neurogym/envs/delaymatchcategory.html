@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -168,7 +172,6 @@
   <h1>Source code for neurogym.envs.delaymatchcategory</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -177,10 +180,15 @@
 
 
 <div class="viewcode-block" id="DelayMatchCategory"><a class="viewcode-back" href="../../../envs/DelayMatchCategory-v0.html#neurogym.envs.delaymatchcategory.DelayMatchCategory">[docs]</a><span class="k">class</span> <span class="nc">DelayMatchCategory</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Delay match-to-category task.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Delayed match-to-category task.</span>
 
-<span class="sd">    A sample stimulus is followed by a delay and test. Agents are required</span>
-<span class="sd">    to indicate if the sample and test are in the same category.</span>
+<span class="sd">    A sample stimulus is shown during the sample period. The stimulus is</span>
+<span class="sd">    characterized by a one-dimensional variable, such as its orientation</span>
+<span class="sd">    between 0 and 360 degree. This one-dimensional variable is separated</span>
+<span class="sd">    into two categories (for example, 0-180 degree and 180-360 degree).</span>
+<span class="sd">    After a delay period, a test stimulus is shown. The agent needs to</span>
+<span class="sd">    determine whether the sample and the test stimuli belong to the same</span>
+<span class="sd">    category, and report that decision during the decision period.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.nature.com/articles/nature05078&#39;</span><span class="p">,</span>
@@ -246,7 +254,6 @@
         <span class="c1"># Periods</span>
         <span class="n">periods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fixation&#39;</span><span class="p">,</span> <span class="s1">&#39;sample&#39;</span><span class="p">,</span> <span class="s1">&#39;first_delay&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_period</span><span class="p">(</span><span class="n">periods</span><span class="p">)</span>
-        <span class="c1"># self.add_period(&#39;decision&#39;, after=&#39;test&#39;)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;fixation&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_ob</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;fixation&#39;</span><span class="p">)</span>
@@ -261,7 +268,7 @@
     <span class="k">def</span> <span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
+        <span class="n">ob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
         <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_now</span>
 
         <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
@@ -278,7 +285,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;fail&#39;</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
+        <span class="k">return</span> <span class="n">ob</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
 </pre></div>
 
            </div>

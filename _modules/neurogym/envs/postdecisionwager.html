@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -180,13 +184,12 @@
 <div class="viewcode-block" id="PostDecisionWager"><a class="viewcode-back" href="../../../envs/PostDecisionWager-v0.html#neurogym.envs.postdecisionwager.PostDecisionWager">[docs]</a><span class="k">class</span> <span class="nc">PostDecisionWager</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Post-decision wagering task assessing confidence.</span>
 
-<span class="sd">    Agents do a discrimination task (see PerceptualDecisionMaking). On a</span>
-<span class="sd">    random half of the trials, the agent is given the option to abort</span>
-<span class="sd">    the direction discrimination and to choose instead a small but</span>
-<span class="sd">    certain reward associated with a action.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        dim_ring: int, dimension of ring input and output</span>
+<span class="sd">    The agent first performs a perceptual discrimination task (see for more</span>
+<span class="sd">    details the PerceptualDecisionMaking task). On a random half of the</span>
+<span class="sd">    trials, the agent is given the option to abort the sensory</span>
+<span class="sd">    discrimination and to choose instead a sure-bet option that guarantees a</span>
+<span class="sd">    small reward. Therefore, the agent is encouraged to choose the sure-bet</span>
+<span class="sd">    option when it is uncertain about its perceptual decision.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://science.sciencemag.org/content/324/5928/&#39;</span> <span class="o">+</span>

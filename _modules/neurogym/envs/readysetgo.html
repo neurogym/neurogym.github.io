@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -179,6 +183,13 @@
 <div class="viewcode-block" id="ReadySetGo"><a class="viewcode-back" href="../../../envs/ReadySetGo-v0.html#neurogym.envs.readysetgo.ReadySetGo">[docs]</a><span class="k">class</span> <span class="nc">ReadySetGo</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Agents have to measure and produce different time intervals.</span>
 
+<span class="sd">    A stimulus is briefly shown during a ready period, then again during a</span>
+<span class="sd">    set period. The ready and set periods are separated by a measure period,</span>
+<span class="sd">    the duration of which is randomly sampled on each trial. The agent is</span>
+<span class="sd">    required to produce a response after the set cue such that the interval</span>
+<span class="sd">    between the response and the set cue is as close as possible to the</span>
+<span class="sd">    duration of the measure period.</span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        gain: Controls the measure that the agent has to produce. (def: 1, int)</span>
 <span class="sd">        prod_margin: controls the interval around the ground truth production</span>
@@ -250,9 +261,6 @@
         <span class="k">return</span> <span class="n">trial</span>
 
     <span class="k">def</span> <span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
-        <span class="c1"># ---------------------------------------------------------------------</span>
-        <span class="c1"># Reward and inputs</span>
-        <span class="c1"># ---------------------------------------------------------------------</span>
         <span class="n">trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trial</span>
         <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">ob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>

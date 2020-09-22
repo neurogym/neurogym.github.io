@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -175,11 +179,11 @@
 
 
 <div class="viewcode-block" id="DelayComparison"><a class="viewcode-back" href="../../../envs/DelayComparison-v0.html#neurogym.envs.delaycomparison.DelayComparison">[docs]</a><span class="k">class</span> <span class="nc">DelayComparison</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Delay comparison.</span>
+    <span class="sd">&quot;&quot;&quot;Delayed comparison.</span>
 
-<span class="sd">    Two-alternative forced choice task in which the subject</span>
-<span class="sd">    has to compare two stimuli separated by a delay to decide</span>
-<span class="sd">    which one has a higher frequency.</span>
+<span class="sd">    The agent needs to compare the magnitude of two stimuli are separated by a</span>
+<span class="sd">    delay period. The agent reports its decision of the stronger stimulus</span>
+<span class="sd">    during the decision period.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.jneurosci.org/content/30/28/9424&#39;</span><span class="p">,</span>
@@ -189,11 +193,15 @@
                  <span class="s1">&#39;supervised&#39;</span><span class="p">]</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">vpairs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
 
-        <span class="c1"># trial conditions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fpairs</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="p">(</span><span class="mi">34</span><span class="p">,</span> <span class="mi">26</span><span class="p">)]</span>
+        <span class="c1"># Pair of stimulus strengthes</span>
+        <span class="k">if</span> <span class="n">vpairs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vpairs</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="p">(</span><span class="mi">34</span><span class="p">,</span> <span class="mi">26</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vpairs</span> <span class="o">=</span> <span class="n">vpairs</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>  <span class="c1"># Input noise</span>
 
@@ -203,10 +211,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">timing</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">3000</span><span class="p">),</span>
-            <span class="s1">&#39;f1&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
-            <span class="s1">&#39;delay&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
-            <span class="s1">&#39;f2&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+            <span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+            <span class="s1">&#39;stimulus1&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+            <span class="s1">&#39;delay&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+            <span class="s1">&#39;stimulus2&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
             <span class="s1">&#39;decision&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
         <span class="k">if</span> <span class="n">timing</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">timing</span><span class="p">)</span>
@@ -214,9 +222,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">abort</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="c1"># Input scaling</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fall</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fpairs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fall</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fall</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vall</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vpairs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vall</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vall</span><span class="p">)</span>
 
         <span class="c1"># action and observation space</span>
         <span class="n">name</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fixation&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;stimulus&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
@@ -230,38 +238,36 @@
     <span class="k">def</span> <span class="nf">_new_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">trial</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;ground_truth&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">choices</span><span class="p">),</span>
-            <span class="s1">&#39;fpair&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">fpairs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fpairs</span><span class="p">))]</span>
+            <span class="s1">&#39;vpair&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">vpairs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vpairs</span><span class="p">))]</span>
         <span class="p">}</span>
         <span class="n">trial</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;fpair&#39;</span><span class="p">]</span>
+        <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;vpair&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f1</span>
-        <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;f1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f1</span>
-        <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;f2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f2</span>
+            <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v1</span>
+        <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;v1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">v1</span>
+        <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;v2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">v2</span>
 
         <span class="c1"># Periods</span>
-        <span class="n">periods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fixation&#39;</span><span class="p">,</span> <span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="s1">&#39;delay&#39;</span><span class="p">,</span> <span class="s1">&#39;f2&#39;</span><span class="p">,</span> <span class="s1">&#39;decision&#39;</span><span class="p">]</span>
+        <span class="n">periods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fixation&#39;</span><span class="p">,</span> <span class="s1">&#39;stimulus1&#39;</span><span class="p">,</span> <span class="s1">&#39;delay&#39;</span><span class="p">,</span> <span class="s1">&#39;stimulus2&#39;</span><span class="p">,</span> <span class="s1">&#39;decision&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_period</span><span class="p">(</span><span class="n">periods</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;fixation&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_p</span><span class="p">(</span><span class="n">f1</span><span class="p">),</span> <span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;stimulus&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_p</span><span class="p">(</span><span class="n">f2</span><span class="p">),</span> <span class="s1">&#39;f2&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;stimulus&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">represent</span><span class="p">(</span><span class="n">v1</span><span class="p">),</span> <span class="s1">&#39;stimulus1&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;stimulus&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">represent</span><span class="p">(</span><span class="n">v2</span><span class="p">),</span> <span class="s1">&#39;stimulus2&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;stimulus&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_ob</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;decision&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_randn</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="s1">&#39;f2&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_randn</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;stimulus1&#39;</span><span class="p">,</span> <span class="s1">&#39;stimulus2&#39;</span><span class="p">])</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">set_groundtruth</span><span class="p">(</span><span class="n">trial</span><span class="p">[</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">],</span> <span class="s1">&#39;decision&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">trial</span>
 
-    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmin</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fmax</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmin</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">scale_p</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">f</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
-
-    <span class="k">def</span> <span class="nf">scale_n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">f</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+<div class="viewcode-block" id="DelayComparison.represent"><a class="viewcode-back" href="../../../envs/DelayComparison-v0.html#neurogym.envs.delaycomparison.DelayComparison.represent">[docs]</a>    <span class="k">def</span> <span class="nf">represent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Input representation of stimulus value.&quot;&quot;&quot;</span>
+        <span class="c1"># Scale to be between 0 and 1</span>
+        <span class="n">v_</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vmin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vmax</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vmin</span><span class="p">)</span>
+        <span class="c1"># positive encoding, between 0.5 and 1</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">v_</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span></div>
 
     <span class="k">def</span> <span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
         <span class="c1"># ---------------------------------------------------------------------</span>

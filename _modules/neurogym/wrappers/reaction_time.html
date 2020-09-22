@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -166,15 +170,17 @@
            <div itemprop="articleBody">
             
   <h1>Source code for neurogym.wrappers.reaction_time</h1><div class="highlight"><pre>
-<span></span><span class="ch">#!/usr/bin/env python3</span>
-<span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Noise wrapper.</span>
+
 <span class="sd">Created on Thu Feb 28 15:07:21 2019</span>
 
 <span class="sd">@author: molano</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># !/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">gym</span>
-<span class="kn">import</span> <span class="nn">neurogym</span> <span class="k">as</span> <span class="nn">ngym</span>
 
 
 <div class="viewcode-block" id="ReactionTime"><a class="viewcode-back" href="../../../wrappers.html#neurogym.wrappers.reaction_time.ReactionTime">[docs]</a><span class="k">class</span> <span class="nc">ReactionTime</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Wrapper</span><span class="p">):</span>  <span class="c1"># TODO: Make this a trial wrapper instead?</span>
@@ -183,6 +189,7 @@
 <span class="sd">    Modifies a given environment by allowing the network to act at</span>
 <span class="sd">    any time after the fixation period.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Modifies a given environment by allowing the network&#39;</span> <span class="o">+</span>
         <span class="s1">&#39; to act at any time after the fixation period.&#39;</span><span class="p">,</span>
@@ -190,16 +197,37 @@
         <span class="s1">&#39;paper_name&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">urgency</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">urgency</span> <span class="o">=</span> <span class="n">urgency</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tr_dur</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="ReactionTime.reset"><a class="viewcode-back" href="../../../wrappers.html#neurogym.wrappers.reaction_time.ReactionTime.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">step_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">step_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">step_fn</span><span class="o">=</span><span class="n">step_fn</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ReactionTime.step"><a class="viewcode-back" href="../../../wrappers.html#neurogym.wrappers.reaction_time.ReactionTime.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="s1">&#39;stimulus&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">start_t</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>\
+        <span class="n">dec</span> <span class="o">=</span> <span class="s1">&#39;decision&#39;</span>
+        <span class="n">stim</span> <span class="o">=</span> <span class="s1">&#39;stimulus&#39;</span>
+        <span class="k">assert</span> <span class="n">stim</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">start_t</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>\
             <span class="s1">&#39;Reaction time wrapper requires a stimulus period&#39;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_ind</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">start_t</span><span class="p">[</span><span class="s1">&#39;decision&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">start_t</span><span class="p">[</span><span class="s1">&#39;stimulus&#39;</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">dec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">start_t</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>\
+            <span class="s1">&#39;Reaction time wrapper requires a decision period&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">t_ind</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># set start of decision period</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">start_t</span><span class="p">[</span><span class="n">dec</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">start_t</span><span class="p">[</span><span class="n">stim</span><span class="p">]</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">dt</span>
+            <span class="c1"># change ground truth accordingly</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">gt</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">start_ind</span><span class="p">[</span><span class="n">stim</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">end_ind</span><span class="p">[</span><span class="n">stim</span><span class="p">]]</span> <span class="o">=</span>\
+                <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">gt</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">start_ind</span><span class="p">[</span><span class="n">dec</span><span class="p">]]</span>
         <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;new_trial&#39;</span><span class="p">]:</span>
+            <span class="n">info</span><span class="p">[</span><span class="s1">&#39;tr_dur&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tr_dur</span>
+            <span class="n">obs</span> <span class="o">*=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tr_dur</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">t_ind</span>
+        <span class="n">reward</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">urgency</span>
         <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span></div></div>
 </pre></div>
 

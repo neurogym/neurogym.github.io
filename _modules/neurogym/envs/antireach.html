@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -177,8 +181,14 @@
 <div class="viewcode-block" id="AntiReach"><a class="viewcode-back" href="../../../envs/AntiReach-v0.html#neurogym.envs.antireach.AntiReach">[docs]</a><span class="k">class</span> <span class="nc">AntiReach</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Anti-response task.</span>
 
-<span class="sd">    The agent has to move in the direction opposite to the one indicated</span>
-<span class="sd">    by the observation.</span>
+<span class="sd">    During the fixation period, the agent fixates on a fixation point.</span>
+<span class="sd">    During the following stimulus period, the agent is then shown a stimulus away</span>
+<span class="sd">    from the fixation point. Finally, the agent needs to respond in the</span>
+<span class="sd">    opposite direction of the stimulus during the decision period.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        anti: bool, if True, requires an anti-response. If False, requires a</span>
+<span class="sd">            pro-response, i.e. response towards the stimulus.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.nature.com/articles/nrn1345&#39;</span><span class="p">,</span>

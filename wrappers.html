@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Understanding Neurogym Task" href="understanding_neurogym_task.html" />
+    <link rel="next" title="Contributors" href="contributors.html" />
     <link rel="prev" title="Tags" href="tags.html" /> 
 </head>
 
@@ -59,6 +59,9 @@
             <a href="index.html" class="icon icon-home"> neurogym
           
 
+          
+            
+            <img src="_static/neurogym_logo.svg" class="logo" alt="Logo"/>
           
           </a>
 
@@ -109,19 +112,18 @@
 <li class="toctree-l2"><a class="reference internal" href="#reactiontime-v0">ReactionTime-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sidebias-v0">SideBias-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trialhistory-v0">TrialHistory-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#trialhistoryev-v0">TrialHistoryEv-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#misstrialreward-v0">MissTrialReward-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ttlpulse-v0">TTLPulse-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#combine-v0">Combine-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#identity-v0">Identity-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transferlearning-v0">TransferLearning-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#variable-nch-v0">Variable_nch-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#concat-v0">Concat-v0</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -215,53 +217,6 @@
 <h1>Wrappers<a class="headerlink" href="#wrappers" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="catchtrials-v0">
 <h2>CatchTrials-v0<a class="headerlink" href="#catchtrials-v0" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="neurogym.wrappers.catch_trials.CatchTrials">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.catch_trials.</code><code class="sig-name descname">CatchTrials</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">catch_prob=0.1</em>, <em class="sig-param">stim_th=None</em>, <em class="sig-param">start=0</em>, <em class="sig-param">alt_rew=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/catch_trials.html#CatchTrials"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.catch_trials.CatchTrials" title="Permalink to this definition">¶</a></dt>
-<dd><p>Catch trials.</p>
-<p>Introduces catch trials in which the reward for a correct choice is
-modified (e.g. is set to the reward for an incorrect choice). Note
-that the wrapper only changes the reward associated to a correct
-answer and does not change the ground truth. Thus, the catch trial
-affect a pure supervised learning setting.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>catch_prob</strong> – Catch trial probability. (def: 0.1, float)</p></li>
-<li><p><strong>stim_th</strong> – Percentile of stimulus distribution below which catch trials
-are allowed (experimenter might decide not to have catch
-trials when  stimulus is too obvious). (def: 50, int)</p></li>
-<li><p><strong>start</strong> – Number of trials after which the catch trials can occur.
-(def: 0, int)</p></li>
-<li><p><strong>alt_rew</strong> – reward given in catch trials</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="method">
-<dt id="neurogym.wrappers.catch_trials.CatchTrials.step">
-<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em>, <em class="sig-param">new_tr_fn=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/catch_trials.html#CatchTrials.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.catch_trials.CatchTrials.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run one timestep of the environment’s dynamics. When end of
-episode is reached, you are responsible for calling <cite>reset()</cite>
-to reset this environment’s state.</p>
-<p>Accepts an action and returns a tuple (observation, reward, done, info).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>action</strong> (<em>object</em>) – an action provided by the agent</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>agent’s observation of the current environment
-reward (float) : amount of reward returned after previous action
-done (bool): whether the episode has ended, in which case further step() calls will return undefined results
-info (dict): contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>observation (object)</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="monitor-v0">
 <h2>Monitor-v0<a class="headerlink" href="#monitor-v0" title="Permalink to this headline">¶</a></h2>
@@ -330,7 +285,7 @@ info (dict): contains auxiliary diagnostic information (helpful for debugging, a
 <h2>Noise-v0<a class="headerlink" href="#noise-v0" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="neurogym.wrappers.noise.Noise">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.noise.</code><code class="sig-name descname">Noise</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">std_noise=0.1</em>, <em class="sig-param">perf_th=None</em>, <em class="sig-param">w=200</em>, <em class="sig-param">step_noise=0.0001</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/noise.html#Noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.noise.Noise" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.noise.</code><code class="sig-name descname">Noise</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">std_noise=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/noise.html#Noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.noise.Noise" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add Gaussian noise to the observations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -344,8 +299,22 @@ performance is not larger than perf_th. (def: None, float)</p></li>
 </dd>
 </dl>
 <dl class="method">
+<dt id="neurogym.wrappers.noise.Noise.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">step_fn=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/noise.html#Noise.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.noise.Noise.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the state of the environment and returns an initial observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the initial observation.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>observation (object)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="neurogym.wrappers.noise.Noise.step">
-<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em>, <em class="sig-param">new_tr_fn=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/noise.html#Noise.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.noise.Noise.step" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/noise.html#Noise.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.noise.Noise.step" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run one timestep of the environment’s dynamics. When end of
 episode is reached, you are responsible for calling <cite>reset()</cite>
 to reset this environment’s state.</p>
@@ -464,10 +433,24 @@ info (dict): contains auxiliary diagnostic information (helpful for debugging, a
 <h2>ReactionTime-v0<a class="headerlink" href="#reactiontime-v0" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="neurogym.wrappers.reaction_time.ReactionTime">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.reaction_time.</code><code class="sig-name descname">ReactionTime</code><span class="sig-paren">(</span><em class="sig-param">env</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/reaction_time.html#ReactionTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.reaction_time.ReactionTime" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.reaction_time.</code><code class="sig-name descname">ReactionTime</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">urgency=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/reaction_time.html#ReactionTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.reaction_time.ReactionTime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Allow reaction time response.</p>
 <p>Modifies a given environment by allowing the network to act at
 any time after the fixation period.</p>
+<dl class="method">
+<dt id="neurogym.wrappers.reaction_time.ReactionTime.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">step_fn=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/reaction_time.html#ReactionTime.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.reaction_time.ReactionTime.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the state of the environment and returns an initial observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the initial observation.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>observation (object)</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="neurogym.wrappers.reaction_time.ReactionTime.step">
 <code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/reaction_time.html#ReactionTime.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.reaction_time.ReactionTime.step" title="Permalink to this definition">¶</a></dt>
@@ -567,111 +550,11 @@ the subset corresponding to the current number of choices</p>
 </dd></dl>
 
 </div>
-<div class="section" id="trialhistoryev-v0">
-<h2>TrialHistoryEv-v0<a class="headerlink" href="#trialhistoryev-v0" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.trial_hist_ev.</code><code class="sig-name descname">TrialHistoryEvolution</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">probs=None</em>, <em class="sig-param">ctx_dur=200</em>, <em class="sig-param">num_contexts=3</em>, <em class="sig-param">fix_2AFC=False</em>, <em class="sig-param">death_prob=0.0001</em>, <em class="sig-param">ctx_ch_prob=None</em>, <em class="sig-param">balanced_probs=False</em>, <em class="sig-param">predef_tr_mats=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/trial_hist_ev.html#TrialHistoryEvolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution" title="Permalink to this definition">¶</a></dt>
-<dd><p>This wrapper imposes specific probability transition matrices that are
-characterized by probs (the probability of the most likely next choice).
-The number of transition matrices is specified by num_contexts. The
-transition matrices are reset with a probability specified by death_prob.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>env</strong> (<em>neurogym.env</em>) – Environment that will be wrapped</p></li>
-<li><p><strong>probs</strong> (<em>float</em><em>, </em><em>optional</em>) – The probability of the the most likely next choice. The default is None.</p></li>
-<li><p><strong>ctx_dur</strong> (<em>int</em><em>, </em><em>optional</em>) – Duration of the contexts (if ctx_ch_prob is None). Default is 200 (trials).</p></li>
-<li><p><strong>num_contexts</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of contexts experienced by each individual. The default is 3.</p></li>
-<li><p><strong>death_prob</strong> (<em>float</em><em>, </em><em>optional</em>) – Probability of death by each individual. The default is 0.0001.</p></li>
-<li><p><strong>ctx_ch_prob</strong> (<em>float</em><em>, </em><em>optional</em>) – Probability of context change. The default is None.</p></li>
-<li><p><strong>balanced_probs</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Indicates whether transtion matrices are balanced. The default is False.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>AttributeError</strong> – DESCRIPTION.</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p></p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>wrapped environment</p>
-</dd>
-</dl>
-<dl class="method">
-<dt id="neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution.step">
-<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/trial_hist_ev.html#TrialHistoryEvolution.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run one timestep of the environment’s dynamics. When end of
-episode is reached, you are responsible for calling <cite>reset()</cite>
-to reset this environment’s state.</p>
-<p>Accepts an action and returns a tuple (observation, reward, done, info).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>action</strong> (<em>object</em>) – an action provided by the agent</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>agent’s observation of the current environment
-reward (float) : amount of reward returned after previous action
-done (bool): whether the episode has ended, in which case further step() calls will return undefined results
-info (dict): contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>observation (object)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution.trans_probs">
-<em class="property">property </em><code class="sig-name descname">trans_probs</code><a class="headerlink" href="#neurogym.wrappers.trial_hist_ev.TrialHistoryEvolution.trans_probs" title="Permalink to this definition">¶</a></dt>
-<dd><p>if prob is float it creates the transition matrix
-if prob is already a matrix it normalizes the probabilities and extracts
-the subset corresponding to the current number of choices</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
 <div class="section" id="misstrialreward-v0">
 <h2>MissTrialReward-v0<a class="headerlink" href="#misstrialreward-v0" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="ttlpulse-v0">
 <h2>TTLPulse-v0<a class="headerlink" href="#ttlpulse-v0" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="neurogym.wrappers.ttl_pulse.TTLPulse">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.ttl_pulse.</code><code class="sig-name descname">TTLPulse</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">periods=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/ttl_pulse.html#TTLPulse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.ttl_pulse.TTLPulse" title="Permalink to this definition">¶</a></dt>
-<dd><p>Outputs extra pulses that will be non-zero during specified periods.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>periods</strong> – List of list specifying the on periods for each pulse.
-(def: [], list)</p>
-</dd>
-</dl>
-<dl class="method">
-<dt id="neurogym.wrappers.ttl_pulse.TTLPulse.step">
-<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em>, <em class="sig-param">new_tr_fn=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/ttl_pulse.html#TTLPulse.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.ttl_pulse.TTLPulse.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run one timestep of the environment’s dynamics. When end of
-episode is reached, you are responsible for calling <cite>reset()</cite>
-to reset this environment’s state.</p>
-<p>Accepts an action and returns a tuple (observation, reward, done, info).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>action</strong> (<em>object</em>) – an action provided by the agent</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>agent’s observation of the current environment
-reward (float) : amount of reward returned after previous action
-done (bool): whether the episode has ended, in which case further step() calls will return undefined results
-info (dict): contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>observation (object)</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="combine-v0">
 <h2>Combine-v0<a class="headerlink" href="#combine-v0" title="Permalink to this headline">¶</a></h2>
@@ -782,37 +665,6 @@ info (dict): contains auxiliary diagnostic information (helpful for debugging, a
 </dd></dl>
 
 </div>
-<div class="section" id="variable-nch-v0">
-<h2>Variable_nch-v0<a class="headerlink" href="#variable-nch-v0" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="neurogym.wrappers.variable_nch.Variable_nch">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.variable_nch.</code><code class="sig-name descname">Variable_nch</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">block_nch=100</em>, <em class="sig-param">blocks_probs=None</em>, <em class="sig-param">sorted_ch=True</em>, <em class="sig-param">prob_12=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/variable_nch.html#Variable_nch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.variable_nch.Variable_nch" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="neurogym.wrappers.variable_nch.Variable_nch.step">
-<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/variable_nch.html#Variable_nch.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.variable_nch.Variable_nch.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run one timestep of the environment’s dynamics. When end of
-episode is reached, you are responsible for calling <cite>reset()</cite>
-to reset this environment’s state.</p>
-<p>Accepts an action and returns a tuple (observation, reward, done, info).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>action</strong> (<em>object</em>) – an action provided by the agent</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>agent’s observation of the current environment
-reward (float) : amount of reward returned after previous action
-done (bool): whether the episode has ended, in which case further step() calls will return undefined results
-info (dict): contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>observation (object)</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</div>
 <div class="section" id="concat-v0">
 <h2>Concat-v0<a class="headerlink" href="#concat-v0" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -826,7 +678,7 @@ info (dict): contains auxiliary diagnostic information (helpful for debugging, a
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="understanding_neurogym_task.html" class="btn btn-neutral float-right" title="Understanding Neurogym Task" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="contributors.html" class="btn btn-neutral float-right" title="Contributors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="tags.html" class="btn btn-neutral float-left" title="Tags" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

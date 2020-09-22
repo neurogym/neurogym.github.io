@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -176,8 +180,13 @@
 
 <span class="c1"># TODO: Getting duration is not intuitive, not clear to people</span>
 <div class="viewcode-block" id="IntervalDiscrimination"><a class="viewcode-back" href="../../../envs/IntervalDiscrimination-v0.html#neurogym.envs.intervaldiscrimination.IntervalDiscrimination">[docs]</a><span class="k">class</span> <span class="nc">IntervalDiscrimination</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Agents have to report which of two stimuli presented</span>
-<span class="sd">    sequentially is longer.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Comparing the time length of two stimuli.</span>
+
+<span class="sd">    Two stimuli are shown sequentially, separated by a delay period. The</span>
+<span class="sd">    duration of each stimulus is randomly sampled on each trial. The</span>
+<span class="sd">    subject needs to judge which stimulus has a longer duration, and reports</span>
+<span class="sd">    its decision during the decision period by choosing one of the two</span>
+<span class="sd">    choice options.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.sciencedirect.com/science/article/pii/&#39;</span> <span class="o">+</span>

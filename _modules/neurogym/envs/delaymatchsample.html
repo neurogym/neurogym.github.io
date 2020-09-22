@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -176,16 +180,19 @@
 
 
 <div class="viewcode-block" id="DelayMatchSample"><a class="viewcode-back" href="../../../envs/DelayMatchSample-v0.html#neurogym.envs.delaymatchsample.DelayMatchSample">[docs]</a><span class="k">class</span> <span class="nc">DelayMatchSample</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Delay-match-to-sample.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Delayed match-to-sample task.</span>
 
-<span class="sd">    A sample stimulus is followed by a delay and test. Agents are required</span>
-<span class="sd">    to indicate if the sample and test are the same stimulus.</span>
+<span class="sd">    A sample stimulus is shown during the sample period. The stimulus is</span>
+<span class="sd">    characterized by a one-dimensional variable, such as its orientation</span>
+<span class="sd">    between 0 and 360 degree. After a delay period, a test stimulus is</span>
+<span class="sd">    shown. The agent needs to determine whether the sample and the test</span>
+<span class="sd">    stimuli are equal, and report that decision during the decision period.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.jneurosci.org/content/jneuro/16/16/&#39;</span> <span class="o">+</span>
                       <span class="s1">&#39;5154.full.pdf&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;paper_name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;Neural Mechanisms of Visual Working Memory</span>
-<span class="s1">    in Prefrontal Cortex of the Macaque&#39;&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;paper_name&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;Neural Mechanisms of Visual Working Memory in </span>
+<span class="s1">        Prefrontal Cortex of the Macaque&#39;&#39;&#39;</span><span class="p">,</span>
         <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;perceptual&#39;</span><span class="p">,</span> <span class="s1">&#39;working memory&#39;</span><span class="p">,</span> <span class="s1">&#39;two-alternative&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;supervised&#39;</span><span class="p">]</span>
     <span class="p">}</span>
@@ -257,7 +264,7 @@
         <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
+        <span class="n">ob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
         <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_now</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;fixation&#39;</span><span class="p">):</span>
@@ -273,16 +280,20 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;fail&#39;</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
+        <span class="k">return</span> <span class="n">ob</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
 
 
 <div class="viewcode-block" id="DelayMatchSampleDistractor1D"><a class="viewcode-back" href="../../../envs/DelayMatchSampleDistractor1D-v0.html#neurogym.envs.delaymatchsample.DelayMatchSampleDistractor1D">[docs]</a><span class="k">class</span> <span class="nc">DelayMatchSampleDistractor1D</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Delay Match to sample with multiple, potentially repeating distractors.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Delayed match-to-sample with multiple, potentially repeating</span>
+<span class="sd">    distractors.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        dt: Timestep duration. (def: 100 (ms), int)</span>
-<span class="sd">        rewards: dictionary of rewards</span>
-<span class="sd">        timing: Description and duration of periods forming a trial.</span>
+<span class="sd">    A sample stimulus is shown during the sample period. The stimulus is</span>
+<span class="sd">    characterized by a one-dimensional variable, such as its orientation</span>
+<span class="sd">    between 0 and 360 degree. After a delay period, the first test stimulus is</span>
+<span class="sd">    shown. The agent needs to determine whether the sample and this test</span>
+<span class="sd">    stimuli are equal. If so, it needs to produce the match response. If the</span>
+<span class="sd">    first test is not equal to the sample stimulus, another delay period and</span>
+<span class="sd">    then a second test stimulus follow, and so on.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.jneurosci.org/content/jneuro/16/16/&#39;</span> <span class="o">+</span>
@@ -356,10 +367,10 @@
         <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
+        <span class="n">ob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
         <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_now</span>
-        <span class="k">if</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;fixation&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;sample&#39;</span><span class="p">))</span>
-           <span class="ow">and</span> <span class="n">action</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;fixation&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;sample&#39;</span><span class="p">))</span> <span class="ow">and</span>
+                <span class="n">action</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
             <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;abort&#39;</span><span class="p">]</span>
             <span class="n">new_trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">abort</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trial</span><span class="p">[</span><span class="s1">&#39;ground_truth&#39;</span><span class="p">])):</span>
@@ -372,7 +383,7 @@
                 <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">performance</span> <span class="o">=</span> <span class="mi">1</span>
 
-        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
+        <span class="k">return</span> <span class="n">ob</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
 </pre></div>
 
            </div>

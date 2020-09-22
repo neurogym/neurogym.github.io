@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -176,16 +180,18 @@
 
 
 <div class="viewcode-block" id="DelayPairedAssociation"><a class="viewcode-back" href="../../../envs/DelayPairedAssociation-v0.html#neurogym.envs.delaypairedassociation.DelayPairedAssociation">[docs]</a><span class="k">class</span> <span class="nc">DelayPairedAssociation</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;A sample is followed by a delay and a test. Agents have to report if</span>
-<span class="sd">    the pair sample-test is a rewarded pair or not.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Delayed paired-association task.</span>
+
+<span class="sd">    The agent is shown a pair of two stimuli separated by a delay period. For</span>
+<span class="sd">    half of the stimuli-pairs shown, the agent should choose the Go response.</span>
+<span class="sd">    The agent is rewarded if it chose the Go response correctly.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://elifesciences.org/articles/43191&#39;</span><span class="p">,</span>
         <span class="s1">&#39;paper_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Active information maintenance in working memory&#39;</span> <span class="o">+</span>
         <span class="s1">&#39; by a sensory cortex&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;perceptual&#39;</span><span class="p">,</span> <span class="s1">&#39;working memory&#39;</span><span class="p">,</span> <span class="s1">&#39;go-no-go&#39;</span><span class="p">,</span>
-                 <span class="s1">&#39;supervised&#39;</span><span class="p">]</span>
+        <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;perceptual&#39;</span><span class="p">,</span> <span class="s1">&#39;working memory&#39;</span><span class="p">,</span> <span class="s1">&#39;go-no-go&#39;</span><span class="p">,</span> <span class="s1">&#39;supervised&#39;</span><span class="p">]</span>
     <span class="p">}</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rewards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
@@ -228,15 +234,11 @@
         <span class="p">}</span>
         <span class="n">trial</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">pair</span> <span class="o">=</span> <span class="n">trial</span><span class="p">[</span><span class="s1">&#39;pair&#39;</span><span class="p">]</span>
-        <span class="c1"># ---------------------------------------------------------------------</span>
-        <span class="c1"># Periods</span>
-        <span class="c1"># ---------------------------------------------------------------------</span>
+
         <span class="n">periods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fixation&#39;</span><span class="p">,</span> <span class="s1">&#39;stim1&#39;</span><span class="p">,</span> <span class="s1">&#39;delay_btw_stim&#39;</span><span class="p">,</span> <span class="s1">&#39;stim2&#39;</span><span class="p">,</span>
                    <span class="s1">&#39;delay_aft_stim&#39;</span><span class="p">,</span> <span class="s1">&#39;decision&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_period</span><span class="p">(</span><span class="n">periods</span><span class="p">)</span>
-        <span class="c1"># ---------------------------------------------------------------------</span>
-        <span class="c1"># Trial</span>
-        <span class="c1"># ---------------------------------------------------------------------</span>
+
         <span class="c1"># set observations</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;fixation&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_ob</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;stim1&#39;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -252,13 +254,10 @@
         <span class="k">return</span> <span class="n">trial</span>
 
     <span class="k">def</span> <span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="c1"># ---------------------------------------------------------------------</span>
-        <span class="c1"># Reward and observations</span>
-        <span class="c1"># ---------------------------------------------------------------------</span>
         <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="c1"># rewards</span>
         <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
+        <span class="n">ob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
         <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_now</span>
         <span class="c1"># observations</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;fixation&#39;</span><span class="p">):</span>
@@ -275,7 +274,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">performance</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
+        <span class="k">return</span> <span class="n">ob</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
 </pre></div>
 
            </div>

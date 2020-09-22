@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -177,7 +181,15 @@
 <div class="viewcode-block" id="HierarchicalReasoning"><a class="viewcode-back" href="../../../envs/HierarchicalReasoning-v0.html#neurogym.envs.hierarchicalreasoning.HierarchicalReasoning">[docs]</a><span class="k">class</span> <span class="nc">HierarchicalReasoning</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Hierarchical reasoning of rules.</span>
 
-
+<span class="sd">    On each trial, the subject receives two flashes separated by a delay</span>
+<span class="sd">    period. The subject needs to judge whether the duration of this delay</span>
+<span class="sd">    period is shorter than a threshold. Both flashes appear at the</span>
+<span class="sd">    same location on each trial. For one trial type, the network should</span>
+<span class="sd">    report its decision by going to the location of the flashes if the delay is</span>
+<span class="sd">    shorter than the threshold. In another trial type, the network should go to</span>
+<span class="sd">    the opposite direction of the flashes if the delay is short.</span>
+<span class="sd">    The two types of trials are alternated across blocks, and the block</span>
+<span class="sd">    transtion is unannouced.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://science.sciencemag.org/content/364/6441/eaav8911&#39;</span><span class="p">,</span>

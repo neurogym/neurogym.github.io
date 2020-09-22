@@ -58,6 +58,9 @@
           
 
           
+            
+            <img src="../../../_static/neurogym_logo.svg" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -102,6 +105,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Contributing</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributors.html">Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../understanding_neurogym_task.html">Understanding Neurogym Task</a></li>
 </ul>
 
@@ -175,8 +179,13 @@
 <div class="viewcode-block" id="DualDelayMatchSample"><a class="viewcode-back" href="../../../envs/DualDelayMatchSample-v0.html#neurogym.envs.dualdelaymatchsample.DualDelayMatchSample">[docs]</a><span class="k">class</span> <span class="nc">DualDelayMatchSample</span><span class="p">(</span><span class="n">ngym</span><span class="o">.</span><span class="n">TrialEnv</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Two-item Delay-match-to-sample.</span>
 
-<span class="sd">    Two sample stimuli are shown simultaneously. Sample 1 and 2 are tested</span>
-<span class="sd">    sequentially. Whether sample 1 or 2 is tested first is indicated by a cue.</span>
+<span class="sd">    The trial starts with a fixation period. Then during the sample period,</span>
+<span class="sd">    two sample stimuli are shown simultaneously. Followed by the first delay</span>
+<span class="sd">    period, a cue is shown, indicating which sample stimulus will be tested.</span>
+<span class="sd">    Then the first test stimulus is shown and the agent needs to report whether</span>
+<span class="sd">    this test stimulus matches the cued sample stimulus. Then another delay</span>
+<span class="sd">    and then test period follows, and the agent needs to report whether the</span>
+<span class="sd">    other sample stimulus matches the second test stimulus.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;paper_link&#39;</span><span class="p">:</span> <span class="s1">&#39;https://science.sciencemag.org/content/354/6316/1136&#39;</span><span class="p">,</span>
@@ -278,7 +287,7 @@
         <span class="n">new_trial</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
+        <span class="n">ob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ob_now</span>
         <span class="n">gt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt_now</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_period</span><span class="p">(</span><span class="s1">&#39;test1&#39;</span><span class="p">):</span>
@@ -301,7 +310,7 @@
                 <span class="n">new_trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">abort</span>
                 <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;abort&#39;</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
+        <span class="k">return</span> <span class="n">ob</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;new_trial&#39;</span><span class="p">:</span> <span class="n">new_trial</span><span class="p">,</span> <span class="s1">&#39;gt&#39;</span><span class="p">:</span> <span class="n">gt</span><span class="p">}</span></div>
 </pre></div>
 
            </div>
