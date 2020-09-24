@@ -104,20 +104,12 @@
 <li class="toctree-l1"><a class="reference internal" href="envs/index.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tags.html">Tags</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Wrappers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#catchtrials-v0">CatchTrials-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#monitor-v0">Monitor-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#noise-v0">Noise-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#passreward-v0">PassReward-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#passaction-v0">PassAction-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reactiontime-v0">ReactionTime-v0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sidebias-v0">SideBias-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#trialhistory-v0">TrialHistory-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#misstrialreward-v0">MissTrialReward-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ttlpulse-v0">TTLPulse-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#combine-v0">Combine-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#identity-v0">Identity-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transferlearning-v0">TransferLearning-v0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#concat-v0">Concat-v0</a></li>
 </ul>
 </li>
 </ul>
@@ -215,9 +207,6 @@
 </style>
 <div class="section" id="wrappers">
 <h1>Wrappers<a class="headerlink" href="#wrappers" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="catchtrials-v0">
-<h2>CatchTrials-v0<a class="headerlink" href="#catchtrials-v0" title="Permalink to this headline">¶</a></h2>
-</div>
 <div class="section" id="monitor-v0">
 <h2>Monitor-v0<a class="headerlink" href="#monitor-v0" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -495,178 +484,6 @@ n_choices))</p></li>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="trialhistory-v0">
-<h2>TrialHistory-v0<a class="headerlink" href="#trialhistory-v0" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="neurogym.wrappers.trial_hist.TrialHistory">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.trial_hist.</code><code class="sig-name descname">TrialHistory</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">probs=None</em>, <em class="sig-param">block_dur=200</em>, <em class="sig-param">num_blocks=2</em>, <em class="sig-param">blk_ch_prob=None</em>, <em class="sig-param">rand_blcks=False</em>, <em class="sig-param">balanced_probs=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/trial_hist.html#TrialHistory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.trial_hist.TrialHistory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Change ground truth probability based on previous outcome.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>probs</strong> – matrix of probabilities of the current choice conditioned
-on the previous for each block. (def: None, np.array,
-num-blocks x num-choices x num-choices)</p></li>
-<li><p><strong>num_blocks</strong> – if 2, repeating and ascending blocks created; if 3,</p></li>
-<li><p><strong>extra descending blocks is added</strong> (<em>an</em>) – </p></li>
-<li><p><strong>block_dur</strong> – Number of trials per block. (def: 200 (int))</p></li>
-<li><p><strong>blk_ch_prob</strong> – If not None, specifies the probability of changing block
-(randomly). (def: None, float)</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="method">
-<dt id="neurogym.wrappers.trial_hist.TrialHistory.step">
-<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/trial_hist.html#TrialHistory.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.trial_hist.TrialHistory.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run one timestep of the environment’s dynamics. When end of
-episode is reached, you are responsible for calling <cite>reset()</cite>
-to reset this environment’s state.</p>
-<p>Accepts an action and returns a tuple (observation, reward, done, info).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>action</strong> (<em>object</em>) – an action provided by the agent</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>agent’s observation of the current environment
-reward (float) : amount of reward returned after previous action
-done (bool): whether the episode has ended, in which case further step() calls will return undefined results
-info (dict): contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>observation (object)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="neurogym.wrappers.trial_hist.TrialHistory.trans_probs">
-<em class="property">property </em><code class="sig-name descname">trans_probs</code><a class="headerlink" href="#neurogym.wrappers.trial_hist.TrialHistory.trans_probs" title="Permalink to this definition">¶</a></dt>
-<dd><p>if prob is float it creates the transition matrix
-if prob is already a matrix it normalizes the probabilities and extracts
-the subset corresponding to the current number of choices</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="misstrialreward-v0">
-<h2>MissTrialReward-v0<a class="headerlink" href="#misstrialreward-v0" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="ttlpulse-v0">
-<h2>TTLPulse-v0<a class="headerlink" href="#ttlpulse-v0" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="combine-v0">
-<h2>Combine-v0<a class="headerlink" href="#combine-v0" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="neurogym.wrappers.combine.Combine">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.combine.</code><code class="sig-name descname">Combine</code><span class="sig-paren">(</span><em class="sig-param">env, distractor, delay=800, dt=100, mix=(0.3, 0.3, 0.4), share_action_space=True, defaults=[0, 0], trial_cue=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/combine.html#Combine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.combine.Combine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Combine two tasks.</p>
-<p>Allows to combine two tasks, one of which working as
-the distractor task.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>distractor</strong> – Distractor task. (no default value)</p></li>
-<li><p><strong>delay</strong> – Time when the distractor task appears. (def: 800 (ms), int)</p></li>
-<li><p><strong>dt</strong> – Timestep duration. (def: 100 (ms), int)</p></li>
-<li><p><strong>mix</strong> – Probabilities for the different trial types (only main, only
-distractor, both). (def: (.5, .0, .5), tuple)</p></li>
-<li><p><strong>share_action_space</strong> – Whether the two task share the same action space.
-Not sharing allows to control (via reward)  what the agent does for
-each task at each timestep (def: True, bool)</p></li>
-<li><p><strong>defaults</strong> – Default rewards for each task. This is used to decide which
-gt/reward to use in the sharing-action-space scenario.
-(def: [0, 0], list)</p></li>
-<li><p><strong>trial_cue</strong> – Whether to show the type of trial as a cue.
-(def: False, bool)</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="method">
-<dt id="neurogym.wrappers.combine.Combine.standby_step">
-<code class="sig-name descname">standby_step</code><span class="sig-paren">(</span><em class="sig-param">env</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/combine.html#Combine.standby_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.combine.Combine.standby_step" title="Permalink to this definition">¶</a></dt>
-<dd><p>creates fake outputs when env is not active</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="identity-v0">
-<h2>Identity-v0<a class="headerlink" href="#identity-v0" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="neurogym.wrappers.identity.Identity">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.identity.</code><code class="sig-name descname">Identity</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">id_='0'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/identity.html#Identity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.identity.Identity" title="Permalink to this definition">¶</a></dt>
-<dd><p>It does nothing</p>
-<dl class="method">
-<dt id="neurogym.wrappers.identity.Identity.step">
-<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em>, <em class="sig-param">new_tr_fn=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/identity.html#Identity.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.identity.Identity.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run one timestep of the environment’s dynamics. When end of
-episode is reached, you are responsible for calling <cite>reset()</cite>
-to reset this environment’s state.</p>
-<p>Accepts an action and returns a tuple (observation, reward, done, info).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>action</strong> (<em>object</em>) – an action provided by the agent</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>agent’s observation of the current environment
-reward (float) : amount of reward returned after previous action
-done (bool): whether the episode has ended, in which case further step() calls will return undefined results
-info (dict): contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>observation (object)</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="transferlearning-v0">
-<h2>TransferLearning-v0<a class="headerlink" href="#transferlearning-v0" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="neurogym.wrappers.transfer_learning.TransferLearning">
-<em class="property">class </em><code class="sig-prename descclassname">neurogym.wrappers.transfer_learning.</code><code class="sig-name descname">TransferLearning</code><span class="sig-paren">(</span><em class="sig-param">envs</em>, <em class="sig-param">num_tr_per_task</em>, <em class="sig-param">task_cue=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/transfer_learning.html#TransferLearning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.transfer_learning.TransferLearning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Allows training on several tasks sequencially.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>envs</strong> – List with environments. (list)</p></li>
-<li><p><strong>num_tr_per_task</strong> – Number of trials to train on each task. (list)</p></li>
-<li><p><strong>task_cue</strong> – Whether to show the current task as a cue. (def: False, bool)</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="method">
-<dt id="neurogym.wrappers.transfer_learning.TransferLearning.step">
-<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param">action</em>, <em class="sig-param">new_tr_fn=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/neurogym/wrappers/transfer_learning.html#TransferLearning.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurogym.wrappers.transfer_learning.TransferLearning.step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run one timestep of the environment’s dynamics. When end of
-episode is reached, you are responsible for calling <cite>reset()</cite>
-to reset this environment’s state.</p>
-<p>Accepts an action and returns a tuple (observation, reward, done, info).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>action</strong> (<em>object</em>) – an action provided by the agent</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>agent’s observation of the current environment
-reward (float) : amount of reward returned after previous action
-done (bool): whether the episode has ended, in which case further step() calls will return undefined results
-info (dict): contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>observation (object)</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="concat-v0">
-<h2>Concat-v0<a class="headerlink" href="#concat-v0" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
